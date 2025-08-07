@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles with dark theme support */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top left, #1c1c1c, #0e0e0e);
+  color: white;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dark-theme {
+  background: #0a0a0a;
+  color: #e1e1e1;
+}
+
+/* Glass effect reusable styles */
+.glass-effect {
+  background: rgba(28, 28, 28, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 140, 0, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(255, 165, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff8f0;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-container a {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.nav-container a:hover,
+.nav-container a.active {
+  background-color: rgba(255, 165, 0, 0.3);
+  color: #fffbe6;
+  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .nav-container a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,32 @@
+<div class="filter-bar">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (input)="filterProjects()"
+    placeholder="Search projects by title"
+  />
+</div>
+
+<section class="project-container">
+  <mat-card class="glass-card project-card" *ngFor="let Project of filteredData; trackBy: trackByProject">
+    <mat-card-header>
+      <mat-card-title class="project-title">{{ Project.title }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="project-description">{{ Project.description }}</div>
+      <div class="tools-glass">
+        <strong>Tools:</strong> {{ Project.tools }}
+      </div>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <div class="footer-row">
+        <span class="year">{{ Project.year }}</span>
+        <button mat-button class="like-button" (click)="toggleLike(Project.title)">
+          <span [ngClass]="{ liked: isLiked(Project.title) }">❤️ Like</span>
+        </button>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</section>

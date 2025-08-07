@@ -1,0 +1,106 @@
+.contacts-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.glass-card {
+  flex: 1 1 260px; /* flexible cards with a min width */
+  max-width: 600px;
+  background: rgba(28, 28, 28, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: rgba(236, 240, 241, 0.9);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(52, 152, 219, 0.4);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  justify-content: center;
+}
+
+.contact-link:hover,
+.contact-link:focus {
+  color: #90caf9;
+  outline: none;
+}
+
+.icon {
+  font-size: 1.8rem;
+  color: rgba(52, 152, 219, 0.9);
+}
+
+
+.media-portfolio-promo {
+  max-width: 600px;
+  margin: 3rem auto 1rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(28, 28, 28, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 12px;
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: rgba(236, 240, 241, 0.9);
+  font-size: 1.15rem;
+  text-align: center;
+  font-weight: 600;
+  animation: slideUpFade 4s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.media-portfolio-promo a {
+  color: rgba(52, 152, 219, 0.9);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.media-portfolio-promo a:hover,
+.media-portfolio-promo a:focus {
+  color: #ffffff;
+  border-color: rgba(52, 152, 219, 0.9);
+  outline: none;
+}
+
+/* Keyframes for slide up and fade animation */
+@keyframes slideUpFade {
+  0% {
+    opacity: 0.6;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .media-portfolio-promo {
+    max-width: 90vw;
+    padding: 1rem 1.5rem;
+  }
+}

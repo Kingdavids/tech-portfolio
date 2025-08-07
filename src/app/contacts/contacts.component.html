@@ -1,0 +1,15 @@
+<div class="contacts-container">
+  <mat-card *ngFor="let c of contacts" class="glass-card">
+    <a [href]="c.url" target="_blank" rel="noopener noreferrer" class="contact-link">
+      <mat-icon class="icon">{{ c.icon }}</mat-icon>
+      <span class="social-name">{{ c.social }}</span>
+    </a>
+  </mat-card>
+
+  <div class="media-portfolio-promo">
+    <p>
+      🎬 Check out my <a href="https://media.muyiwadavids.com" target="_blank" rel="noopener noreferrer">Media Portfolio</a> — built with React & Tailwind, hosted on AWS Amplify!
+    </p>
+  </div>
+
+</div>
