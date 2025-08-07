@@ -1,0 +1,42 @@
+.review-form-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  color: #50dae6;
+}
+
+
+mat-form-field {
+  width: 100%;
+  color: #18c8dd;
+}
+
+mat-label {
+  color: #015ba1 !important; // Soft blue label highlight
+}
+
+input,
+textarea {
+  color: #00080e !important;
+}
+
+button {
+  background: rgba(144, 202, 249, 0.15);
+  color: #055295;
+  border: 1px solid rgba(144, 202, 249, 0.4);
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 8px 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background: rgba(144, 202, 249, 0.25);
+  box-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
+  transform: scale(1.03);
+}

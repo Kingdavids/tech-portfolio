@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LikeService } from '../services/like.service';
 import { projects } from '../interfaces/portfolio-revised';
+import { HttpClient } from '@angular/common/http';
 import {PROJECT_LIST} from '../data/project-data';
 
 @Component({
@@ -16,6 +17,7 @@ import {PROJECT_LIST} from '../data/project-data';
   styles: [`.liked { color: red; font-weight: bold; }`]
 })
 export class ProjectsComponent {
+  private http =inject(HttpClient);
   projects: projects[] = [
     { title: 'Teams Alerting System', description: 'Integrated alerts to Teams from pipelines', tools: 'Azure, Teams', year: 2025, url:"" },
     { title: 'Sax Made Easy Website', description: 'Figma design to HTML/CSS website', tools: 'HTML, CSS', year: 2024, url:"" },
@@ -27,6 +29,7 @@ export class ProjectsComponent {
       tools: 'Tailwind CSS, React, AWS, Amplify, Postman, Figma',
       year: 2025, url: 'https://media.muyiwadavids.com'}
   ];
+
   searchTerm = '';
   filteredData = PROJECT_LIST;
   constructor(public likeService: LikeService) {}
@@ -40,4 +43,9 @@ export class ProjectsComponent {
   trackByProject(index: number, item: projects) {
     return item.title;
   }
-}
+
+  ngOnInit() {
+    this.http.get<any[]>('data/portfolio.json').subscribe(data => {
+      this.projects = data;
+    });
+  }}
