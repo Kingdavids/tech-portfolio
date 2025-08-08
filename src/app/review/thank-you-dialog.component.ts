@@ -14,3 +14,4 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatDialogModule, MatButtonModule]
 })
 export class ThankYouDialogComponent {}
+

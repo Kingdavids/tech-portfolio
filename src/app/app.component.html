@@ -28,12 +28,15 @@
   <button class="theme-toggle" (click)="toggleTheme()" title="Toggle dark/light mode">
     {{ isDark ? '🌞' : '🌙' }}
   </button>
-
   <button class="scroll-top" (click)="scrollToTop()" title="Back to top">↑</button>
 </div>
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
 
-<footer class="footer">
-  Designed by Muyiwa Davids (c) 2025
-</footer>
+
+
+
+
+

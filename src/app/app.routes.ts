@@ -5,9 +5,9 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ReviewComponent} from './review/review.component';
 
 export const routes: Routes = [
-  { path: '', component: AboutComponent },
-  { path: 'about', redirectTo: '', pathMatch: 'full' },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'contact', component: ContactsComponent },
-  { path: 'review', component: ReviewComponent },
+  { path: '', component: AboutComponent, data: {animation: 'AboutPage'} },
+  { path: 'about', redirectTo: '', pathMatch: 'full', data: {animation: 'AboutPage'} },
+  { path: 'projects', component: ProjectsComponent, data: {animation: 'ProjectsPage'} },
+  { path: 'contact', component: ContactsComponent, data: {animation: 'ContactPage'} },
+  { path: 'review', component: ReviewComponent, data: {animation: 'ReviewPage'}},
 ];

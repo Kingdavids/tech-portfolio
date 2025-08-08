@@ -1,30 +1,52 @@
+<!-- src/app/projects/projects.component.html -->
+
 <div class="filter-bar">
-  <input
-    type="text"
-    [(ngModel)]="searchTerm"
-    (input)="filterProjects()"
-    placeholder="Search projects by title"
-  />
+  <input matInput (input)="filterProjects($event)" placeholder="Search Projects">
 </div>
 
 <section class="project-container">
-  <mat-card class="glass-card project-card" *ngFor="let Project of filteredData; trackBy: trackByProject">
+  <mat-card
+    class="glass-card project-card"
+    *ngFor="let project of filteredProjects; trackBy: trackByTitle"
+  >
     <mat-card-header>
-      <mat-card-title class="project-title">{{ Project.title }}</mat-card-title>
+      <mat-card-title class="project-title">{{ project.title }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-      <div class="project-description">{{ Project.description }}</div>
+      <p class="project-description">{{ project.description }}</p>
+
       <div class="tools-glass">
-        <strong>Tools:</strong> {{ Project.tools }}
+        <strong>Tools:</strong>
+        <ng-container *ngIf="isToolsArray(project.tools); else plainTools">
+          {{ getJoinedTools(project.tools) }}
+        </ng-container>
+        <ng-template #plainTools>
+          {{ project.tools }}
+        </ng-template>
+      </div>
+
+      <div *ngIf="project.link">
+        <a
+          [href]="project.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-url"
+        >
+          View Project
+        </a>
       </div>
     </mat-card-content>
 
     <mat-card-footer>
       <div class="footer-row">
-        <span class="year">{{ Project.year }}</span>
-        <button mat-button class="like-button" (click)="toggleLike(Project.title)">
-          <span [ngClass]="{ liked: isLiked(Project.title) }">❤️ Like</span>
+        <span class="year">{{ project.year }}</span>
+        <button
+          mat-button
+          class="like-button"
+          (click)="toggleLike(project.title)"
+        >
+          <span [ngClass]="{ liked: isLiked(project.title) }">❤️ Like</span>
         </button>
       </div>
     </mat-card-footer>

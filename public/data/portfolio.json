@@ -1,0 +1,66 @@
+[
+{
+  "title": "Media Portfolio",
+  "description": "I developed my media portfolio using React, styled with Tailwind CSS, hosted it on Amplify. This is my first full stack app, from frontend through backend to deployment, This project was the bridge between educational process and real life product. ",
+  "year": "2025",
+  "link": "https://media.muyiwadavids.com",
+  "tools": ["Tailwind CSS", "React", "AWS", "Amplify", "Postman", "Figma"],
+  "liked": false
+},
+
+  { "title": "Monitoring Alert System",
+    "description": "I integrated an Alerting System for CI/CD pipelines on Azure with Microsoft Teams, so the team get notified realtime whenever there is any downtime",
+    "tools": ["Azure, Microsoft Teams"],
+    "year": "2025",
+    "liked": false
+  },
+
+  { "title": "Sax Made Easy Website",
+    "description": "I was ecstatic as a rookie to watch a line of code become a web page design.  This was my initial attempt at building a website, which was later hosted and updated. I tried implementing the Figma design using HTML and CSS I learnt about in web development class.",
+    "tools": ["HTML, CSS, Figma"],
+    "year": "2024",
+    "liked": false
+  },
+
+  { "title": "Countries Website",
+    "description": "I expanded on this assignment from my web programming class, the website lists all countries of the world and gives concise information about their demographics, geography, and culture",
+    "tools": ["Nodejs, MySQL, EJS, JavaScript"],
+    "year": "2025",
+    "liked": false
+  },
+
+  { "title": "Crazy Eights Game",
+    "description": "Card game built with Java and OOP principles as an assignment in school, the program shuffles card and allow players to draw cards and play matching cards",
+    "tools": ["Java, Netbean"],
+    "year": "2025",
+    "liked":false
+  },
+
+  { "title": "Ovbiedo App",
+    "description": "I worked with cloud Ops team of this App, for the Edo community in Montreal Canada, but We have upscaled it to an event ticketing app, available for download on playstore and app store",
+    "tools": ["AWS, Azure, Docker, Terraform"],
+    "year": "2025",
+    "liked":false
+  },
+
+  { "title": "Tech Portfolio",
+    "description": "This tech portfolio project began as assignments for my mobile-web application class, which taught me the fundamentals of Angular. As I extended the assignments, it evolved into the stunning project you are currently seeing.",
+    "tools": ["Angular"],
+    "year": "2025",
+    "liked": false
+  },
+
+  { "title": "Project Management",
+    "description": "Also in school, I was able to understand the principles of project management and the core concept of agile, I worked in a team of four on a scheduling app on Jira, the experience was a roller coaster, with real time challenges. ",
+    "tools": ["Jira"],
+    "year": "2025",
+    "liked": false
+  },
+
+  { "title": "System Design",
+    "description": "Together with four of my classmates, I worked on an educational project for a gym. We designed an app that would handle scheduling, payments, and bookings, as well as provide the owner with a monthly report. Throughout the process, I gained an understanding of the principles of system design, starting with contextual diagrams and progressing through UML, Use Cases, Wire Frames, Storyboarding, and more in-depth design.",
+    "tools": ["Visual Paradigm"],
+    "year": "2025",
+    "liked": false
+  }
+]

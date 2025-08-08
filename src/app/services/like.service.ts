@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class LikeService {
-  private liked: Set<string> = new Set();
+  private likedProjects: string[] = [];
 
-  toggleLike(title: string) {
-    this.liked.has(title) ? this.liked.delete(title) : this.liked.add(title);
+  toggleLike(projectTitle: string): void {
+    const index = this.likedProjects.indexOf(projectTitle);
+    if (index === -1) {
+      this.likedProjects.push(projectTitle);
+    } else {
+      this.likedProjects.splice(index, 1);
+    }
   }
-  isLiked(title: string): boolean {
-    return this.liked.has(title);
+
+  getLikedProjects(): string[] {
+    return this.likedProjects;
   }
 }
