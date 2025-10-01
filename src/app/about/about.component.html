@@ -1,6 +1,8 @@
 <div class="about-container">
   <div class="profile-section">
-    <img src="/images/me.jpg" class="profile-image">
+    <div class="profile-flip-container">
+    <img [src]="currentPicture" class="profile-image" alt="Profile picture">
+    </div>
     <div class="name-section">
       <h1>{{info.name}}</h1>
       <p class="role">{{info.role}}</p>

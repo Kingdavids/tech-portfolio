@@ -17,7 +17,8 @@
   border-radius: 12px;
   padding: 1.5rem;
   border: 1px solid rgba(52, 152, 219, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  perspective: 1000px;
+
 }
 
 .profile-image {
@@ -27,8 +28,28 @@
   object-fit: cover;
   border: 3px solid rgba(52, 152, 219, 0.5);
   box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
+  transition: transform 0.8s ease-in-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
+.profile-flip-container {
+  width: 120px;
+  height: 120px;
+  perspective: 1000px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.profile-flip-container.flip .profile-image {
+  transform: rotateY(180deg) scale(0.95); /* slightly smaller for depth */
+}
+
+.profile-image:hover {
+  transform: translateY(-6px) scale(1.03) rotateX(6deg) rotateY(-4deg);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+
+}
 .name-section {
   text-align: left;
 }

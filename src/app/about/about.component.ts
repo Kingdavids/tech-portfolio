@@ -1,9 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Information } from '../interfaces/portfolio-revised';
-import { CommonModule} from '@angular/common';
-import { MaterialModule} from '../modules/material-ui.module';
-import {NgModule} from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../modules/material-ui.module';
 
 @Component({
   selector: 'app-about',
@@ -12,7 +10,7 @@ import {NgModule} from '@angular/core';
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit, OnDestroy {
   info: Information = {
     name: "Muyiwa Davids",
     role: "Full Stack Developer",
@@ -24,6 +22,39 @@ export class AboutComponent {
       "I'm passionate about turning complex ideas into intuitive digital experiences, and I'm always eager to explore emerging technologies that improve performance, accessibility, and maintainability. \n" +
       "\n" +
       " Please drop your review, looking forward to reading your them."
+  };
 
+  // 🔄 Picture slideshow logic
+  pictures: string[] = [
+    '/images/me.jpg',
+    '/images/me 2.png',
+  ];
+  currentIndex = 0;
+  currentPicture = this.pictures[0];
+  intervalId: any;
+
+  ngOnInit() {
+    this.intervalId = setInterval(() => {
+      const container = document.querySelector('.profile-flip-container');
+      if (container) {
+        // Start flip
+        container.classList.add('flip');
+
+        // Midway (0.4s) swap the image
+        setTimeout(() => {
+          this.currentIndex = (this.currentIndex + 1) % this.pictures.length;
+          this.currentPicture = this.pictures[this.currentIndex];
+        }, 400); // halfway through flip
+
+        // End flip
+        setTimeout(() => container.classList.remove('flip'), 800);
+      }
+    }, 5000);
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 }
