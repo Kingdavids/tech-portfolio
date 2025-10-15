@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit, OnDestroy {
       "\n" +
       "I'm passionate about turning complex ideas into intuitive digital experiences, and I'm always eager to explore emerging technologies that improve performance, accessibility, and maintainability. \n" +
       "\n" +
-      " Please drop your review, looking forward to reading your them."
+      " Please drop your review, looking forward to reading them."
   };
 
   // 🔄 Picture slideshow logic
