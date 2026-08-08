@@ -1,0 +1,78 @@
+<div class="hero-bg" aria-hidden="true">
+  <div class="orb-wrap orb-wrap-1"><span class="orb orb-1"></span></div>
+  <div class="orb-wrap orb-wrap-2"><span class="orb orb-2"></span></div>
+  <div class="orb-wrap orb-wrap-3"><span class="orb orb-3"></span></div>
+</div>
+
+<div class="hero-inner">
+  <div class="hero-content">
+    <span class="eyebrow hero-enter enter-1">Hello, I'm</span>
+    <h1 class="hero-name hero-enter enter-2" appScramble>{{ name }}</h1>
+    <p class="hero-role hero-enter enter-3">{{ role }}</p>
+    <p class="hero-tagline hero-enter enter-4">{{ tagline }}</p>
+
+    <div class="hero-actions hero-enter enter-5">
+      <button class="btn-primary" [appMagnetic]="0.3" (click)="scrollTo('work')">
+        View Work <span class="btn-arrow">→</span>
+      </button>
+      <button class="btn-secondary" [appMagnetic]="0.3" (click)="scrollTo('contact')">Get in Touch</button>
+    </div>
+
+    <div class="stat-tiles hero-enter enter-6">
+      <div class="stat-tile" *ngFor="let stat of stats">
+        <span class="stat-value">{{ stat.display }}</span>
+        <span class="stat-label">{{ stat.label }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="terminal-frame">
+    <span class="corner corner-tl"></span>
+    <span class="corner corner-tr"></span>
+    <span class="corner corner-bl"></span>
+    <span class="corner corner-br"></span>
+
+    <div class="terminal glass-card">
+      <div class="terminal-bar">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="terminal-title">zsh — muyiwa&#64;portfolio</span>
+      </div>
+      <div class="terminal-body">
+        <p class="terminal-line"><span class="prompt">$</span> whoami</p>
+        <p class="terminal-line output">{{ name }} — {{ role }}</p>
+        <p class="terminal-line"><span class="prompt">$</span> cat mission.txt</p>
+        <p class="terminal-line output typed-line">Build clean, scalable, production-ready software.<span class="cursor">▌</span></p>
+      </div>
+    </div>
+
+    <div class="spec-panel">
+      <div class="spec-header">
+        <span class="spec-dot"></span> STACK VERIFICATION
+        <span class="spec-rule"></span>
+      </div>
+      <div class="spec-tiles">
+        <div class="spec-tile">
+          <span class="spec-icon">🖥️</span>
+          <span class="spec-label">Frontend</span>
+        </div>
+        <div class="spec-tile">
+          <span class="spec-icon">⚙️</span>
+          <span class="spec-label">Backend</span>
+        </div>
+        <div class="spec-tile">
+          <span class="spec-icon">☁️</span>
+          <span class="spec-label">Cloud &amp; DevOps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-tech-marquee class="hero-marquee"></app-tech-marquee>
+
+<div class="hero-scroll-cue" (click)="scrollTo('about')">
+  <span>Scroll</span>
+  <div class="cue-line"></div>
+</div>

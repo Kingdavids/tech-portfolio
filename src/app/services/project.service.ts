@@ -7,21 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  private url ='data/portfolio.json';
-  private likedProjects: Set<string> = new Set();
+  private url = 'data/portfolio.json';
 
   constructor(private http: HttpClient) { }
 
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.url)
-  }
-  toggleLike(title: string): void {
-    this.likedProjects.has(title)
-      ? this.likedProjects.delete(title)
-      : this.likedProjects.add(title);
-  }
-
-  isLiked(title: string): boolean {
-    return this.likedProjects.has(title);
   }
 }

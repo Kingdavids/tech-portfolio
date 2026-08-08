@@ -1,0 +1,21 @@
+<header class="navbar" [class.scrolled]="scrolled">
+  <a class="logo" (click)="onNavClick('home')">
+    <span class="logo-mark">&lt;</span>MD<span class="logo-mark">/&gt;</span>
+  </a>
+  <nav class="nav-pill">
+    <span
+      class="nav-indicator"
+      [class.ready]="indicator().ready"
+      [style.transform]="'translateX(' + indicator().left + 'px)'"
+      [style.width.px]="indicator().width"
+    ></span>
+    <a
+      *ngFor="let section of sections"
+      #navItem
+      class="nav-item"
+      [class.active]="activeSection() === section.id"
+      [appMagnetic]="0.15"
+      (click)="onNavClick(section.id)"
+    >{{ section.label }}</a>
+  </nav>
+</header>

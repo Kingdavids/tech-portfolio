@@ -1,0 +1,59 @@
+<div class="work-controls">
+  <div class="filter-pills">
+    <button
+      *ngFor="let filter of filters"
+      class="filter-pill"
+      [class.active]="activeFilter === filter"
+      (click)="setFilter(filter)"
+    >{{ filter }}</button>
+  </div>
+  <input class="search-input" (input)="onSearch($event)" placeholder="Search work">
+</div>
+
+<div class="work-list" #workListEl>
+  <ng-container *ngIf="revealed">
+  <mat-card
+    class="glass-card work-item"
+    appTilt
+    [style.animation-delay]="delayFor(i)"
+    *ngFor="let item of filteredItems; let i = index; trackBy: trackBySlug"
+  >
+    <div class="work-cover">
+      <div class="browser-chrome">
+        <span class="chrome-dot chrome-dot-red"></span>
+        <span class="chrome-dot chrome-dot-yellow"></span>
+        <span class="chrome-dot chrome-dot-green"></span>
+        <span class="chrome-url">
+          <span class="chrome-lock" *ngIf="item.secure">🔒</span>{{ item.displayUrl }}
+        </span>
+      </div>
+      <div class="cover-art" [style.background]="coverGradient(item.slug)">
+        <span class="card-monogram">{{ coverMonogram(item.title) }}</span>
+        <span class="card-cover-grid"></span>
+      </div>
+    </div>
+
+    <div class="work-body">
+      <div class="work-meta">
+        <span class="work-category" [class.backend]="item.category === 'Backend'">{{ item.category }}</span>
+        <span class="work-year">{{ item.year }}</span>
+      </div>
+      <h3 class="work-title">{{ item.title }}</h3>
+      <p class="work-description">{{ item.description }}</p>
+      <div class="chip-row">
+        <span class="chip" *ngFor="let tag of item.tags">{{ tag }}</span>
+      </div>
+      <div class="work-actions" *ngIf="item.link">
+        <a
+          [href]="item.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="work-link"
+        >View Project →</a>
+      </div>
+    </div>
+  </mat-card>
+  </ng-container>
+
+  <p class="empty-state" *ngIf="revealed && !filteredItems.length">No work matches your search.</p>
+</div>

@@ -1,25 +1,23 @@
-<div class="about-container">
-  <div class="profile-section">
-    <div class="profile-flip-container">
-    <img [src]="currentPicture" class="profile-image" alt="Profile picture">
+<div class="about-split">
+  <div class="about-photo-col">
+    <div class="profile-section glass-card">
+      <div class="profile-flip-container">
+        <img [src]="currentPicture" class="profile-image" alt="Profile picture">
+      </div>
+      <p class="profile-caption">Full-stack developer &amp; lifelong builder, based in Ontario, Canada.</p>
     </div>
-    <div class="name-section">
-      <h1>{{info.name}}</h1>
-      <p class="role">{{info.role}}</p>
+
+    <div class="glass-card skills-card">
+      <h3>Skills</h3>
+      <div class="skills-chips">
+        <span class="skill-chip" *ngFor="let skill of info.skills">{{ skill }}</span>
+      </div>
     </div>
   </div>
 
-  <div class="glass-card skills-card">
-    <h2>Skills</h2>
-    <p>{{info.skills}}</p>
-  </div>
-
-  <div class="glass-card bio-card">
-    <h2>About Me</h2>
-    <p>{{info.describe}}</p>
+  <div class="about-content-col">
+    <div class="glass-card bio-card" *ngFor="let paragraph of bioParagraphs">
+      <p>{{paragraph}}</p>
+    </div>
   </div>
 </div>
-
-<footer class="footer">
-  Designed by Muyiwa Davids (c) 2025
-</footer>

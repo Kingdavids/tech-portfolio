@@ -3,7 +3,7 @@
 export interface Information {
   name: string;
   role: string;
-  skills: string;
+  skills: string[];
   describe: string;
 }
 

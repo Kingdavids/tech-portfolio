@@ -1,0 +1,6 @@
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item" *ngFor="let tech of stack">{{ tech }}</span>
+    <span class="marquee-item" *ngFor="let tech of stack" aria-hidden="true">{{ tech }}</span>
+  </div>
+</div>

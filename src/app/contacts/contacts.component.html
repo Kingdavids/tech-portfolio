@@ -1,19 +1,52 @@
-<div class="contacts-container">
-  <mat-card *ngFor="let c of contacts" class="glass-card">
-    <a [href]="c.url" target="_blank" rel="noopener noreferrer" class="contact-link">
-      <mat-icon class="icon">{{ c.icon }}</mat-icon>
-      <span class="social-name">{{ c.social }}</span>
-    </a>
-  </mat-card>
+<div class="contact-grid">
+  <div class="contact-left">
+    <p class="contact-intro">Whether it's a project, a role, or just a question — I'd love to hear from you. Find me on any of these, or send a message directly.</p>
 
-  <div class="media-portfolio-promo">
-    <p>
-      🎬 Check out my <a href="https://media.muyiwadavids.com" target="_blank" rel="noopener noreferrer">Media Portfolio</a> — built with React & Tailwind, hosted on AWS Amplify!
-    </p>
+    <div class="contacts-container">
+      <mat-card *ngFor="let c of contacts" class="glass-card">
+        <a [href]="c.url" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <mat-icon class="icon" [svgIcon]="c.icon"></mat-icon>
+          <span class="social-name">{{ c.social }}</span>
+        </a>
+      </mat-card>
+    </div>
+
+    <div class="media-portfolio-promo">
+      <p>
+        🎬 Check out my <a href="https://media.muyiwadavids.com" target="_blank" rel="noopener noreferrer">Media Portfolio</a> — built with React & Tailwind, hosted on AWS Amplify!
+      </p>
+    </div>
   </div>
 
-</div>
+  <div class="contact-right glass-card" appScrollReveal>
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" class="review-form">
+      <div class="field-group" [class.field-1]="true">
+        <label for="cf-name">Name</label>
+        <div class="input-wrap">
+          <span class="field-icon">👤</span>
+          <input id="cf-name" formControlName="name" required placeholder="Your name">
+        </div>
+      </div>
 
-<footer class="footer">
-  Designed by Muyiwa Davids (c) 2025
-</footer>
+      <div class="field-group field-2">
+        <label for="cf-email">Email</label>
+        <div class="input-wrap">
+          <span class="field-icon">✉️</span>
+          <input id="cf-email" type="email" formControlName="email" required placeholder="you@example.com">
+        </div>
+      </div>
+
+      <div class="field-group field-3">
+        <label for="cf-message">Message</label>
+        <div class="input-wrap input-wrap-textarea">
+          <span class="field-icon">💬</span>
+          <textarea id="cf-message" formControlName="comment" rows="4" required placeholder="Tell me a bit about it..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn-primary field-4" type="submit" [disabled]="!reviewForm.valid">
+        Send Message <span class="btn-arrow">→</span>
+      </button>
+    </form>
+  </div>
+</div>

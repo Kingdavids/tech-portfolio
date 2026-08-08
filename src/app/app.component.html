@@ -1,42 +1,36 @@
-<header class="navbar-glass">
-  <a routerLink="/about" class="logo">Muyiwa Davids</a>
-  <nav class="nav-content">
-    <div class="nav-container">
-      <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-        <span class="nav-icon">👤</span> About Me
-      </a>
-    </div>
-    <div class="nav-container">
-      <a routerLink="/projects" routerLinkActive="active-link">
-        <span class="nav-icon">💼</span> Projects
-      </a>
-    </div>
-    <div class="nav-container">
-      <a routerLink="/contact" routerLinkActive="active-link">
-        <span class="nav-icon">✉️</span> Contact
-      </a>
-    </div>
-    <div class="nav-container">
-      <a routerLink="/review" routerLinkActive="active-link">
-        <span class="nav-icon">📝</span> Review
-      </a>
-    </div>
-  </nav>
-</header>
+<app-scroll-progress></app-scroll-progress>
+<app-cursor></app-cursor>
+<app-nav></app-nav>
+
+<main>
+  <section id="home" class="section-hero" appScrollReveal>
+    <app-hero></app-hero>
+  </section>
+
+  <section id="about" class="section" appScrollReveal>
+    <span class="section-number" [appParallax]="0.1">01</span>
+    <span class="eyebrow">// 01 — About</span>
+    <h2 appScramble>About</h2>
+    <app-about></app-about>
+  </section>
+
+  <section id="work" class="section" appScrollReveal>
+    <span class="section-number" [appParallax]="0.1">02</span>
+    <span class="eyebrow">// 02 — Work</span>
+    <h2 appScramble>Work</h2>
+    <app-work></app-work>
+  </section>
+
+  <section id="contact" class="section" appScrollReveal>
+    <span class="section-number" [appParallax]="0.1">03</span>
+    <span class="eyebrow">// 03 — Contact</span>
+    <h2 appScramble>Let's build something</h2>
+    <app-contacts></app-contacts>
+  </section>
+</main>
+
+<app-footer></app-footer>
 
 <div class="theme-controls">
-  <button class="theme-toggle" (click)="toggleTheme()" title="Toggle dark/light mode">
-    {{ isDark ? '🌞' : '🌙' }}
-  </button>
   <button class="scroll-top" (click)="scrollToTop()" title="Back to top">↑</button>
 </div>
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
-</div>
-
-
-
-
-
-
-
