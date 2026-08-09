@@ -1,18 +1,16 @@
-import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, afterNextRender } from '@angular/core';
 
 @Directive({
   selector: '[appParallax]',
   standalone: true
 })
-export class ParallaxDirective implements OnInit {
+export class ParallaxDirective {
   @Input('appParallax') speed = 0.12;
 
   private ticking = false;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
-
-  ngOnInit(): void {
-    this.update();
+  constructor(private el: ElementRef<HTMLElement>) {
+    afterNextRender(() => this.update());
   }
 
   @HostListener('window:scroll')

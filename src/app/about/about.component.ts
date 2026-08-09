@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
 import { Information } from '../interfaces/portfolio-revised';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-about',
@@ -37,8 +37,11 @@ export class AboutComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   currentPicture = this.pictures[0];
   intervalId?: ReturnType<typeof setInterval>;
+  private readonly platformId = inject(PLATFORM_ID);
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     this.intervalId = setInterval(() => {
       const container = document.querySelector('.profile-flip-container');
       if (container) {

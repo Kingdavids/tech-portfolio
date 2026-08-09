@@ -3,13 +3,15 @@ import {
   Component,
   ElementRef,
   HostListener,
+  PLATFORM_ID,
   QueryList,
   Signal,
   ViewChildren,
   effect,
+  inject,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollSpyService } from '../scroll-spy.service';
 import { scrollToSection } from '../scroll.util';
 import { MagneticDirective } from '../magnetic.directive';
@@ -46,6 +48,8 @@ export class NavComponent implements AfterViewInit {
 
   @ViewChildren('navItem') private navItemEls!: QueryList<ElementRef<HTMLElement>>;
 
+  private readonly platformId = inject(PLATFORM_ID);
+
   constructor(private scrollSpy: ScrollSpyService) {
     this.activeSection = this.scrollSpy.activeSection;
     effect(() => {
@@ -56,7 +60,9 @@ export class NavComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.scrollSpy.observeSections(this.sections.map(s => s.id));
-    window.addEventListener('resize', () => this.positionIndicator());
+    if (isPlatformBrowser(this.platformId)) {
+      window.addEventListener('resize', () => this.positionIndicator());
+    }
   }
 
   @HostListener('window:scroll')

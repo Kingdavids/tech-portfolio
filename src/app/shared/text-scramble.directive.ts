@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, afterNextRender } from '@angular/core';
 
 const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#$%&01';
 
@@ -6,26 +6,26 @@ const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#$%&01';
   selector: '[appScramble]',
   standalone: true
 })
-export class TextScrambleDirective implements AfterViewInit, OnDestroy {
+export class TextScrambleDirective implements OnDestroy {
   private observer?: IntersectionObserver;
   private intervalId?: ReturnType<typeof setInterval>;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private el: ElementRef<HTMLElement>) {
+    afterNextRender(() => {
+      const finalText = this.el.nativeElement.textContent ?? '';
+      if (!finalText.trim()) return;
 
-  ngAfterViewInit(): void {
-    const finalText = this.el.nativeElement.textContent ?? '';
-    if (!finalText.trim()) return;
-
-    this.observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          this.scramble(finalText);
-          this.observer?.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
-    this.observer.observe(this.el.nativeElement);
+      this.observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            this.scramble(finalText);
+            this.observer?.disconnect();
+          }
+        },
+        { threshold: 0.4 }
+      );
+      this.observer.observe(this.el.nativeElement);
+    });
   }
 
   ngOnDestroy(): void {

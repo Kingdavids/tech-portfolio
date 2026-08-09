@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { forkJoin } from 'rxjs';
@@ -34,12 +34,16 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   filteredItems: WorkItem[] = [];
   activeFilter: Filter = 'All';
   searchTerm = '';
-  revealed = false;
 
   readonly filters: Filter[] = ['All', 'Frontend', 'Backend'];
 
   @ViewChild('workListEl') private workListEl!: ElementRef<HTMLElement>;
   private revealObserver?: IntersectionObserver;
+  private readonly platformId = inject(PLATFORM_ID);
+
+  // On the server, render cards immediately so prerendered HTML includes
+  // the full work list for crawlers, instead of waiting on a scroll observer.
+  revealed = !isPlatformBrowser(this.platformId);
 
   constructor(
     private projectService: ProjectService,
@@ -60,6 +64,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.revealObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
