@@ -8,47 +8,102 @@
   }
 }
 
-.cursor-dot,
-.cursor-ring {
+.cursor-crosshair,
+.cursor-terminal {
   position: fixed;
   top: 0;
   left: 0;
-  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.15s ease, transform 0.05s linear;
 }
 
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: var(--accent-bright);
-  transition: opacity 0.2s ease, transform 0.05s linear;
+/* Default state: targeting reticle */
+.cursor-crosshair {
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
 }
 
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1px solid var(--border-accent);
-  transition: opacity 0.2s ease, transform 0.15s ease-out, width 0.25s ease, height 0.25s ease, margin 0.25s ease, background 0.25s ease;
-}
-
-.cursor-dot.visible,
-.cursor-ring.visible {
+.cursor-crosshair.visible {
   opacity: 1;
 }
 
-.cursor-dot.hover {
+.cursor-crosshair.visible.hover {
   opacity: 0;
 }
 
-.cursor-ring.hover {
-  width: 56px;
-  height: 56px;
-  margin: -28px 0 0 -28px;
-  background: var(--accent-dim);
-  border-color: var(--accent);
+.tick {
+  position: absolute;
+  background: var(--accent-bright);
+}
+
+.tick-top,
+.tick-bottom {
+  width: 1px;
+  height: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tick-top {
+  top: 0;
+}
+
+.tick-bottom {
+  bottom: 0;
+}
+
+.tick-left,
+.tick-right {
+  height: 1px;
+  width: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tick-left {
+  left: 0;
+}
+
+.tick-right {
+  right: 0;
+}
+
+.crosshair-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+}
+
+/* Hover state: blinking terminal caret, matching the hero's typed-line cursor */
+.cursor-terminal {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--accent-bright);
+  margin: -0.6em 0 0 4px;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.cursor-terminal.visible.hover {
+  opacity: 1;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-terminal.visible.hover {
+    animation: none;
+  }
 }

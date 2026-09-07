@@ -1,3 +1,5 @@
+import { WorkCategory } from './work-item';
+
 export interface SpringBootProject {
   slug: string;
   title: string;
@@ -5,6 +7,15 @@ export interface SpringBootProject {
   description: string;
   techStack: string[];
   keyFeatures: string[];
+  category: WorkCategory;
   year: string;
   screenshots: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  videoUrl?: string;
+  posterUrl?: string;
+  screenshotUrl?: string;
+  highlights?: string[];
+  academic?: boolean;
+  priority?: number;
 }

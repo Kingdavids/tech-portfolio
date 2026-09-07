@@ -5,6 +5,7 @@
     "tagline": "Full-auth internal discussion forum with admin moderation",
     "description": "A role-gated internal discussion platform built with Spring Security and Spring Data JDBC. Employees and managers self-register with access codes, then create threads and nested replies; admins can lock or delete any thread. Runs fully self-contained against an in-memory H2 database.",
     "techStack": ["Spring Boot 4.1", "Spring Security", "Spring Data JDBC", "Thymeleaf", "H2 Database", "Lombok", "Java 25"],
+    "category": "Backend",
     "keyFeatures": [
       "Role-gated self-registration via access codes (employee vs. manager)",
       "Threaded discussions with nested replies",
@@ -13,7 +14,8 @@
       "Zero external setup — self-contained in-memory H2 database"
     ],
     "year": "2026",
-    "screenshots": []
+    "screenshots": [],
+    "priority": 9
   },
   {
     "slug": "novacore-forum",
@@ -21,6 +23,7 @@
     "tagline": "HTTPS-secured re-architecture of the corporate forum concept",
     "description": "A from-scratch reimplementation of the corporate forum concept, hardened with end-to-end TLS. Employees and admins authenticate over HTTPS with a self-signed certificate, and sessions are locked down with HttpOnly, Secure, and SameSite=Strict cookies.",
     "techStack": ["Spring Boot 4.1", "Spring Security", "Thymeleaf", "H2 Database", "TLS/SSL (PKCS12)", "Java 17"],
+    "category": "Backend",
     "keyFeatures": [
       "Full HTTPS with a self-signed PKCS12 keystore",
       "Distinct employee and admin roles",
@@ -29,7 +32,8 @@
       "One-time-use registration access codes"
     ],
     "year": "2026",
-    "screenshots": []
+    "screenshots": [],
+    "screenshotUrl": "images/screenshot-novacore-forum.jpg"
   },
   {
     "slug": "thymeleaf-fragments-demo",
@@ -37,6 +41,7 @@
     "tagline": "Modular server-rendered UI built from reusable Thymeleaf fragments",
     "description": "A focused demonstration of Thymeleaf's fragment composition model — a single product-listing page assembled at render time from independent head, body, and footer fragments, backed by a seeded in-memory catalog.",
     "techStack": ["Spring Boot 4.1", "Thymeleaf", "H2 Database", "Java 25"],
+    "category": "Backend",
     "keyFeatures": [
       "Page composed from independent head/body/footer fragments",
       "Demonstrates Thymeleaf's th:insert / th:replace composition model",
@@ -52,6 +57,7 @@
     "tagline": "Self-service registration with selectable USER / ADMIN authorities",
     "description": "A Spring Security demo where new users choose their own authority at registration time (USER, ADMIN, or both), and an ADMIN-gated products page enforces that choice. Served entirely over HTTPS with automatic HTTP-to-HTTPS redirection.",
     "techStack": ["Spring Boot 4.1", "Spring Security", "Thymeleaf", "H2 Database", "TLS/SSL", "Java 25"],
+    "category": "Backend",
     "keyFeatures": [
       "Registration form with a selectable authority dropdown (USER / ADMIN / BOTH)",
       "ADMIN-gated /secure/products route",
@@ -59,7 +65,8 @@
       "Authority-based route guarding with Spring Security"
     ],
     "year": "2026",
-    "screenshots": []
+    "screenshots": [],
+    "screenshotUrl": "images/screenshot-role-based-auth-demo.jpg"
   },
   {
     "slug": "in-memory-auth-demo",
@@ -67,6 +74,7 @@
     "tagline": "Minimal Spring Security setup with hardcoded in-memory users",
     "description": "The simplest possible Spring Security bootstrap: two hardcoded users defined directly in an InMemoryUserDetailsManager, no database at all, used to demonstrate role-based route protection and access-denied handling in isolation.",
     "techStack": ["Spring Boot 4.1", "Spring Security", "Thymeleaf", "Java 25"],
+    "category": "Backend",
     "keyFeatures": [
       "Zero-database InMemoryUserDetailsManager configuration",
       "Two roles demonstrated: ROLE_ADMIN and ROLE_USER",
@@ -74,7 +82,8 @@
       "Minimal reference implementation of Spring Security route guarding"
     ],
     "year": "2026",
-    "screenshots": []
+    "screenshots": [],
+    "screenshotUrl": "images/screenshot-in-memory-auth-demo.jpg"
   },
   {
     "slug": "book-haven",
@@ -82,6 +91,7 @@
     "tagline": "Thymeleaf client performing full CRUD against a separate REST API",
     "description": "A two-service architecture: a Thymeleaf UI client that performs full CRUD on a book catalog purely by calling a separate, independently deployable REST API over HTTP via RestTemplate — no shared database access between the two services.",
     "techStack": ["Spring Boot 4.1", "Thymeleaf", "RestTemplate", "Spring Web REST API", "H2 Database", "Java 25"],
+    "category": "Backend",
     "keyFeatures": [
       "Two independently deployable Spring Boot services (UI client + REST API)",
       "Full CRUD — create, read, update, delete — for a book catalog",
@@ -89,6 +99,26 @@
       "Realistic client/server microservice split"
     ],
     "year": "2026",
-    "screenshots": []
+    "screenshots": [],
+    "screenshotUrl": "images/screenshot-book-haven.jpg",
+    "priority": 11
+  },
+  {
+    "slug": "linux-network-services-lab",
+    "title": "Linux Network Services Lab",
+    "tagline": "Core network services configured and validated in virtualized Linux environments",
+    "description": "Configured and validated FTP, NFS, Samba, and Sendmail services across virtualized Linux environments, with attention to file permissions, service availability, and repeatable administration steps.",
+    "techStack": ["Linux", "FTP", "NFS", "Samba", "Sendmail", "Virtualization"],
+    "category": "Systems",
+    "keyFeatures": [
+      "FTP file transfer service configured with scoped user permissions",
+      "NFS shared storage mounted and validated across virtual hosts",
+      "Samba file sharing configured for cross-platform access",
+      "Sendmail mail transfer agent configured and tested end to end"
+    ],
+    "year": "2026",
+    "screenshots": [],
+    "academic": true,
+    "priority": 12
   }
 ]

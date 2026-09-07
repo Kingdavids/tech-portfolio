@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[appTilt]',
@@ -6,6 +6,9 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class TiltDirective {
   private readonly maxTilt = 5;
+
+  @Input('appTiltLift') liftPx = 6;
+  @Input('appTiltScale') hoverScale = 1;
 
   constructor(private el: ElementRef<HTMLElement>) {}
 
@@ -18,7 +21,7 @@ export class TiltDirective {
     const rotateY = (x - 0.5) * this.maxTilt * 2;
 
     this.el.nativeElement.style.transform =
-      `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-${this.liftPx}px) scale(${this.hoverScale})`;
     this.el.nativeElement.style.setProperty('--glow-x', `${x * 100}%`);
     this.el.nativeElement.style.setProperty('--glow-y', `${y * 100}%`);
   }

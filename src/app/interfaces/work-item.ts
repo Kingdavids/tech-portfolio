@@ -1,11 +1,18 @@
+export type WorkCategory = 'Frontend' | 'Backend' | 'Full-Stack' | 'Cloud/DevOps' | 'Desktop & CLI' | 'Systems' | 'Process';
+
 export interface WorkItem {
   slug: string;
-  category: 'Frontend' | 'Backend';
+  category: WorkCategory;
   title: string;
   description: string;
   tags: string[];
+  highlights: string[];
   year: string;
-  link?: string;
-  displayUrl: string;
-  secure: boolean;
+  liveUrl?: string;
+  githubUrl?: string;
+  videoUrl?: string;
+  posterUrl?: string;
+  screenshotUrl?: string;
+  academic: boolean;
+  priority: number;
 }

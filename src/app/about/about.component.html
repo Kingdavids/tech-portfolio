@@ -9,8 +9,11 @@
 
     <div class="glass-card skills-card">
       <h3>Skills</h3>
-      <div class="skills-chips">
-        <span class="skill-chip" *ngFor="let skill of info.skills">{{ skill }}</span>
+      <div class="skill-tier" *ngFor="let tier of info.skillTiers">
+        <span class="skill-tier-label">{{ tier.label }}</span>
+        <div class="skills-chips">
+          <span class="skill-chip" *ngFor="let skill of tier.skills">{{ skill }}</span>
+        </div>
       </div>
     </div>
   </div>

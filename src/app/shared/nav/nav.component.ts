@@ -38,6 +38,7 @@ export class NavComponent implements AfterViewInit {
   readonly sections: NavSection[] = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
     { id: 'work', label: 'Work' },
     { id: 'contact', label: 'Contact' },
   ];

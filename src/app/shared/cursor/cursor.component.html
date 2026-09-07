@@ -1,12 +1,18 @@
 <div
-  class="cursor-dot"
+  class="cursor-crosshair"
   [class.visible]="isVisible"
   [class.hover]="isHovering"
   [style.transform]="'translate(' + x + 'px, ' + y + 'px)'"
-></div>
+>
+  <span class="tick tick-top"></span>
+  <span class="tick tick-bottom"></span>
+  <span class="tick tick-left"></span>
+  <span class="tick tick-right"></span>
+  <span class="crosshair-dot"></span>
+</div>
 <div
-  class="cursor-ring"
+  class="cursor-terminal"
   [class.visible]="isVisible"
   [class.hover]="isHovering"
   [style.transform]="'translate(' + x + 'px, ' + y + 'px)'"
-></div>
+>▌</div>

@@ -13,16 +13,33 @@ export class AboutComponent implements OnInit, OnDestroy {
   info: Information = {
     name: "Muyiwa Davids",
     role: "Full Stack Developer",
-    skills: [
-      "React", "Angular", "TypeScript", "Node.js", "Express.js", "REST APIs",
-      "PostgreSQL", "SQL", "Spring Boot", "Java", "Linux Administration",
-      "Cloud Computing", "Scalable Architecture",
+    skillTiers: [
+      {
+        label: "Strong",
+        skills: ["Angular", "React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"],
+      },
+      {
+        label: "Working knowledge",
+        skills: ["Node.js", "Express.js", "Java", "Spring Boot", "SQL", "PostgreSQL", "MySQL"],
+      },
+      {
+        label: "Hands-on exposure",
+        skills: ["AWS", "Azure", "Docker", "Terraform", "CI/CD"],
+      },
+      {
+        label: "Systems",
+        skills: ["Linux Administration", "Networking", "Service Configuration"],
+      },
+      {
+        label: "Collaboration",
+        skills: ["Slack", "Linear", "Jira", "Git"],
+      },
     ],
     describe: "Hi, My name is Olumuyiwa David Ogunniyi, an innovative and detail-oriented junior Software Developer with a strong foundation in full-stack web development, system administration, and scalable application design. I specialize in building clean, responsive user experiences with Angular, React, TypeScript, and Material Design just like this one, complemented by hands-on experience in backend systems, database modeling, and Linux-based service configuration.\n" +
       "\n" +
       "My recent projects span a range of modern development challenges — from designing a minimalist Angular portfolio with custom routing and search filtering, to implementing secure services (FTP, NFS, Samba, Sendmail) in virtualized Linux environments. I’ve also led the development of normalized database models and RESTful APIs, contributing to efficient, maintainable codebases and cross-functional team collaboration.\n" +
       "\n" +
-      "I'm passionate about turning complex ideas into intuitive digital experiences, and I'm always eager to explore emerging technologies that improve performance, accessibility, and maintainability."
+      "Alongside my own builds, I contribute to product engineering at Averil and evaluate AI coding-agent output for systems like Codex and Claude Code at G2i and DataAnnotation — work that sharpens how I judge code quality, not just how I write it. I'm passionate about turning complex ideas into intuitive digital experiences, and I'm always eager to explore emerging technologies that improve performance, accessibility, and maintainability."
   };
 
   get bioParagraphs(): string[] {

@@ -10,50 +10,115 @@
   <input class="search-input" (input)="onSearch($event)" placeholder="Search work">
 </div>
 
-<div class="work-list" #workListEl>
-  <ng-container *ngIf="revealed">
+<div class="work-list" #workListEl [class.is-revealed]="revealed">
   <mat-card
     class="glass-card work-item"
     appTilt
+    [appTiltLift]="10"
+    [appTiltScale]="1.02"
     [style.animation-delay]="delayFor(i)"
     *ngFor="let item of filteredItems; let i = index; trackBy: trackBySlug"
   >
     <div class="work-cover">
-      <div class="browser-chrome">
+      <div class="browser-chrome" *ngIf="item.liveUrl; else noLiveChrome">
         <span class="chrome-dot chrome-dot-red"></span>
         <span class="chrome-dot chrome-dot-yellow"></span>
         <span class="chrome-dot chrome-dot-green"></span>
         <span class="chrome-url">
-          <span class="chrome-lock" *ngIf="item.secure">🔒</span>{{ item.displayUrl }}
+          <span class="chrome-lock" *ngIf="item.liveUrl.startsWith('https://')">🔒</span>{{ displayHost(item.liveUrl) }}
         </span>
       </div>
-      <div class="cover-art" [style.background]="coverGradient(item.slug)">
-        <span class="card-monogram">{{ coverMonogram(item.title) }}</span>
-        <span class="card-cover-grid"></span>
+      <ng-template #noLiveChrome>
+        <div class="browser-chrome browser-chrome-static" *ngIf="item.academic">
+          <span class="chrome-academic-label">Academic Project</span>
+        </div>
+      </ng-template>
+      <a
+        *ngIf="item.liveUrl"
+        class="cover-preview"
+        [href]="item.liveUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="'Open live site for ' + item.title"
+      >
+        <iframe [src]="safeUrl(item.liveUrl)" loading="lazy" tabindex="-1" title="{{ item.title }} live preview"></iframe>
+        <span class="cover-preview-overlay">Visit Live Site ↗</span>
+      </a>
+
+      <a
+        *ngIf="!item.liveUrl && item.videoUrl"
+        class="cover-preview cover-preview-video"
+        [href]="item.videoUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="'Watch demo video for ' + item.title"
+        (mouseenter)="demoVideo.play()"
+        (mouseleave)="demoVideo.pause()"
+      >
+        <video #demoVideo [src]="item.videoUrl" [attr.poster]="item.posterUrl" muted loop playsinline preload="metadata"></video>
+        <span class="cover-preview-overlay">▶ Watch Demo</span>
+      </a>
+
+      <a
+        *ngIf="!item.liveUrl && !item.videoUrl && item.screenshotUrl"
+        class="cover-preview cover-preview-image"
+        [href]="item.screenshotUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="'View screenshot for ' + item.title"
+      >
+        <img [src]="item.screenshotUrl" [alt]="item.title + ' screenshot'" loading="lazy">
+        <span class="cover-preview-overlay">View Screenshot ↗</span>
+      </a>
+
+      <div class="cover-placeholder" *ngIf="!item.liveUrl && !item.videoUrl && !item.screenshotUrl">
+        <div class="sim-window" aria-hidden="true">
+          <div class="sim-header">
+            <span class="sim-block sim-block-title"></span>
+            <svg class="sim-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <span class="sim-block sim-block-line long"></span>
+          <span class="sim-block sim-block-line medium"></span>
+          <span class="sim-block sim-block-cta"></span>
+        </div>
+        <span class="cover-placeholder-text">Screenshot coming soon</span>
       </div>
     </div>
 
     <div class="work-body">
       <div class="work-meta">
-        <span class="work-category" [class.backend]="item.category === 'Backend'">{{ item.category }}</span>
+        <span class="work-category" [class]="categoryClass(item.category)">{{ item.category }}</span>
         <span class="work-year">{{ item.year }}</span>
       </div>
       <h3 class="work-title">{{ item.title }}</h3>
       <p class="work-description">{{ item.description }}</p>
+      <div class="highlight-row" *ngIf="item.highlights?.length">
+        <span class="highlight-chip" *ngFor="let highlight of item.highlights">✨ {{ highlight }}</span>
+      </div>
       <div class="chip-row">
         <span class="chip" *ngFor="let tag of item.tags">{{ tag }}</span>
       </div>
-      <div class="work-actions" *ngIf="item.link">
+      <div class="work-actions" *ngIf="item.githubUrl || (item.liveUrl && item.videoUrl)">
         <a
-          [href]="item.link"
+          *ngIf="item.githubUrl"
+          [href]="item.githubUrl"
           target="_blank"
           rel="noopener noreferrer"
           class="work-link"
-        >View Project →</a>
+        >GitHub →</a>
+        <a
+          *ngIf="item.liveUrl && item.videoUrl"
+          [href]="item.videoUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="work-link"
+        >Demo Video →</a>
       </div>
     </div>
   </mat-card>
-  </ng-container>
 
-  <p class="empty-state" *ngIf="revealed && !filteredItems.length">No work matches your search.</p>
+  <p class="empty-state" *ngIf="!filteredItems.length">No work matches your search.</p>
 </div>

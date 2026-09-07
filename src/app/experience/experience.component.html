@@ -1,0 +1,12 @@
+<div class="experience-list">
+  <div class="glass-card experience-card" appTilt *ngFor="let entry of entries">
+    <div class="experience-head">
+      <h3 class="experience-role">{{ entry.role }}</h3>
+      <span class="experience-company">{{ entry.company }}</span>
+    </div>
+    <span class="experience-location">{{ entry.location }}</span>
+    <ul class="experience-bullets">
+      <li *ngFor="let bullet of entry.bullets">{{ bullet }}</li>
+    </ul>
+  </div>
+</div>

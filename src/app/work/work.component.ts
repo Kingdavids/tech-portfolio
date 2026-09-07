@@ -2,25 +2,18 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, V
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
 import { Project } from '../interfaces/portfolio-revised';
 import { SpringBootProject } from '../interfaces/spring-boot-project';
-import { WorkItem } from '../interfaces/work-item';
+import { WorkCategory, WorkItem } from '../interfaces/work-item';
 import { ProjectService } from '../services/project.service';
 import { SpringBootProjectService } from '../services/spring-boot-project.service';
-import { coverGradient, coverMonogram } from '../shared/cover-art.util';
 import { TiltDirective } from '../shared/tilt.directive';
 
-const BACKEND_DEV_URLS: Record<string, string> = {
-  'corporate-forum': 'http://localhost:8080',
-  'novacore-forum': 'https://localhost:8443',
-  'thymeleaf-fragments-demo': 'http://localhost:8080',
-  'role-based-auth-demo': 'https://localhost:8443',
-  'in-memory-auth-demo': 'http://localhost:8080',
-  'book-haven': 'http://localhost:8080',
-};
+type Filter = 'All' | WorkCategory;
 
-type Filter = 'All' | 'Frontend' | 'Backend';
+const DEFAULT_PRIORITY = 100;
 
 @Component({
   selector: 'app-work',
@@ -35,15 +28,18 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   activeFilter: Filter = 'All';
   searchTerm = '';
 
-  readonly filters: Filter[] = ['All', 'Frontend', 'Backend'];
+  readonly filters: Filter[] = ['All', 'Frontend', 'Backend', 'Full-Stack', 'Cloud/DevOps', 'Desktop & CLI', 'Systems', 'Process'];
 
   @ViewChild('workListEl') private workListEl!: ElementRef<HTMLElement>;
   private revealObserver?: IntersectionObserver;
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly safeUrlCache = new Map<string, SafeResourceUrl>();
 
-  // On the server, render cards immediately so prerendered HTML includes
-  // the full work list for crawlers, instead of waiting on a scroll observer.
-  revealed = !isPlatformBrowser(this.platformId);
+  // Cards always render (both platforms); this only gates the CSS entrance
+  // animation via a class on .work-list, so there's no structural hydration
+  // mismatch risk between server and client.
+  revealed = false;
 
   constructor(
     private projectService: ProjectService,
@@ -58,7 +54,10 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       this.items = [
         ...frontend.map(p => this.fromProject(p)),
         ...backend.map(p => this.fromSpringBootProject(p)),
-      ];
+      ].sort((a, b) => {
+        const rankDiff = this.previewRank(a) - this.previewRank(b);
+        return rankDiff !== 0 ? rankDiff : a.priority - b.priority;
+      });
       this.applyFilters();
     });
   }
@@ -86,43 +85,40 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       ? project.tools
       : project.tools.split(',').map(t => t.trim()).filter(Boolean);
     return {
-      slug: project.title,
-      category: 'Frontend',
+      slug: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      category: project.category,
       title: project.title,
       description: project.description,
       tags: tools,
+      highlights: project.highlights ?? [],
       year: project.year,
-      link: project.link,
-      displayUrl: this.hostnameFor(project),
-      secure: !!project.link && project.link.startsWith('https://'),
+      liveUrl: project.link,
+      githubUrl: project.githubUrl,
+      videoUrl: project.videoUrl,
+      posterUrl: project.posterUrl,
+      screenshotUrl: project.screenshotUrl,
+      academic: !!project.academic,
+      priority: project.priority ?? DEFAULT_PRIORITY,
     };
   }
 
   private fromSpringBootProject(project: SpringBootProject): WorkItem {
-    const url = BACKEND_DEV_URLS[project.slug] ?? 'http://localhost:8080';
     return {
       slug: project.slug,
-      category: 'Backend',
+      category: project.category,
       title: project.title,
-      description: project.tagline,
+      description: project.description,
       tags: project.techStack,
+      highlights: project.highlights ?? [],
       year: project.year,
-      link: undefined,
-      displayUrl: url,
-      secure: url.startsWith('https://'),
+      liveUrl: project.liveUrl,
+      githubUrl: project.githubUrl,
+      videoUrl: project.videoUrl,
+      posterUrl: project.posterUrl,
+      screenshotUrl: project.screenshotUrl,
+      academic: !!project.academic,
+      priority: project.priority ?? DEFAULT_PRIORITY,
     };
-  }
-
-  private hostnameFor(project: Project): string {
-    if (project.link) {
-      try {
-        return new URL(project.link).hostname;
-      } catch {
-        return project.link;
-      }
-    }
-    const slug = project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    return `localhost:4200/${slug}`;
   }
 
   setFilter(filter: Filter): void {
@@ -133,6 +129,14 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   onSearch(event: Event): void {
     this.searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
     this.applyFilters();
+  }
+
+  // Lower rank sorts first: live sites, then video demos, then screenshots, then no preview.
+  private previewRank(item: WorkItem): number {
+    if (item.liveUrl) return 0;
+    if (item.videoUrl) return 1;
+    if (item.screenshotUrl) return 2;
+    return 3;
   }
 
   private applyFilters(): void {
@@ -151,11 +155,24 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
     return `${Math.min(i * 0.05, 0.3)}s`;
   }
 
-  coverGradient(slug: string): string {
-    return coverGradient(slug);
+  safeUrl(url: string): SafeResourceUrl {
+    let safe = this.safeUrlCache.get(url);
+    if (!safe) {
+      safe = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      this.safeUrlCache.set(url, safe);
+    }
+    return safe;
   }
 
-  coverMonogram(title: string): string {
-    return coverMonogram(title);
+  categoryClass(category: WorkCategory): string {
+    return 'cat-' + category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  }
+
+  displayHost(url: string): string {
+    try {
+      return new URL(url).hostname;
+    } catch {
+      return url;
+    }
   }
 }
