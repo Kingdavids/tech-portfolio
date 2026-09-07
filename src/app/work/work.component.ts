@@ -71,7 +71,11 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
           this.revealObserver?.disconnect();
         }
       },
-      { threshold: 0.1 }
+      // threshold: 0 — the work-list can be far taller than the viewport (a
+      // single mobile column stacking 20+ cards), so a higher fraction-based
+      // threshold could mathematically never be satisfied by any scroll
+      // position. Firing as soon as any part enters view is correct here.
+      { threshold: 0 }
     );
     this.revealObserver.observe(this.workListEl.nativeElement);
   }
