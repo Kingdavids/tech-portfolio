@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -31,9 +31,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly filters: Filter[] = ['All', 'Frontend', 'Backend', 'Full-Stack', 'Cloud/DevOps', 'Desktop & CLI', 'Systems', 'Process'];
 
   @ViewChild('workListEl') private workListEl!: ElementRef<HTMLElement>;
-  @ViewChildren('previewHost') private previewHosts!: QueryList<ElementRef<HTMLElement>>;
   private revealObserver?: IntersectionObserver;
-  private embedObserver?: IntersectionObserver;
   private readonly platformId = inject(PLATFORM_ID);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly safeUrlCache = new Map<string, SafeResourceUrl>();
@@ -43,18 +41,17 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   // mismatch risk between server and client.
   revealed = false;
 
-  // 'eager' (matches SSR output, no hydration mismatch) mounts every live
-  // preview iframe at once — fine on desktop, where there's headroom and the
-  // hover-tilt effect benefits from the iframe already being loaded. Narrow/
-  // touch viewports switch to 'single' in ngAfterViewInit: up to 7 concurrent
-  // embedded live sites was very likely why mobile tabs were reloading under
-  // memory pressure, and the hover effect never fires on touch anyway.
-  previewMode: 'eager' | 'single' = 'eager';
-  // In 'single' mode, only the card whose slug matches this gets a live
-  // iframe; everything else shows its static screenshot. Updated by
-  // embedObserver as the user scrolls, so at most one live site is ever
-  // mounted on mobile.
-  activeEmbedSlug: string | null = null;
+  // Defaults true to match SSR output (no hydration mismatch); flipped to
+  // false in ngAfterViewInit on narrow/touch viewports. Tried keeping one
+  // live iframe mounted at a time (swapped as the user scrolled) instead of
+  // this flat cutoff, but real mobile devices still leaked memory across
+  // repeated swaps and crashed after extended scrolling — iframe teardown
+  // for a heavy external SPA isn't reliably clean on mobile Safari/Chrome.
+  // Static screenshots (screenshotUrl, set for every live-URL project) are
+  // the only version that's actually proven stable, so mobile gets zero
+  // live embeds, full stop. The hover-tilt effect the iframes exist for
+  // never fires on touch anyway.
+  useLiveEmbeds = true;
 
   constructor(
     private projectService: ProjectService,
@@ -81,8 +78,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
     const isTouchOrNarrow = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
     if (isTouchOrNarrow) {
-      this.previewMode = 'single';
-      this.setUpEmbedObserver();
+      this.useLiveEmbeds = false;
     }
     this.revealObserver = new IntersectionObserver(
       ([entry]) => {
@@ -102,30 +98,6 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.revealObserver?.disconnect();
-    this.embedObserver?.disconnect();
-    this.previewHostsSub?.unsubscribe();
-  }
-
-  private previewHostsSub?: { unsubscribe(): void };
-
-  private setUpEmbedObserver(): void {
-    this.embedObserver = new IntersectionObserver(
-      (entries) => {
-        const mostVisible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (mostVisible) {
-          this.activeEmbedSlug = (mostVisible.target as HTMLElement).dataset['slug'] ?? null;
-        }
-      },
-      { threshold: [0.35, 0.6, 0.85] }
-    );
-    const observeAll = (hosts: QueryList<ElementRef<HTMLElement>>) => {
-      this.embedObserver?.disconnect();
-      hosts.forEach(host => this.embedObserver?.observe(host.nativeElement));
-    };
-    observeAll(this.previewHosts);
-    this.previewHostsSub = this.previewHosts.changes.subscribe(observeAll);
   }
 
   private fromProject(project: Project): WorkItem {

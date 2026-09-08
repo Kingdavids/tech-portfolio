@@ -35,17 +35,15 @@
       </ng-template>
       <a
         *ngIf="item.liveUrl"
-        #previewHost
-        [attr.data-slug]="item.slug"
         class="cover-preview"
         [href]="item.liveUrl"
         target="_blank"
         rel="noopener noreferrer"
         [attr.aria-label]="'Open live site for ' + item.title"
       >
-        <iframe *ngIf="!item.noEmbed && (previewMode === 'eager' || activeEmbedSlug === item.slug)" [src]="safeUrl(item.liveUrl)" loading="lazy" tabindex="-1" title="{{ item.title }} live preview"></iframe>
-        <img *ngIf="(item.noEmbed || (previewMode === 'single' && activeEmbedSlug !== item.slug)) && item.screenshotUrl" [src]="item.screenshotUrl" [alt]="item.title + ' screenshot'" loading="lazy" class="cover-static-image">
-        <div *ngIf="(item.noEmbed || (previewMode === 'single' && activeEmbedSlug !== item.slug)) && !item.screenshotUrl" class="cover-static-fallback" aria-hidden="true">
+        <iframe *ngIf="!item.noEmbed && useLiveEmbeds" [src]="safeUrl(item.liveUrl)" loading="lazy" tabindex="-1" title="{{ item.title }} live preview"></iframe>
+        <img *ngIf="(item.noEmbed || !useLiveEmbeds) && item.screenshotUrl" [src]="item.screenshotUrl" [alt]="item.title + ' screenshot'" loading="lazy" class="cover-static-image">
+        <div *ngIf="(item.noEmbed || !useLiveEmbeds) && !item.screenshotUrl" class="cover-static-fallback" aria-hidden="true">
           <span class="cover-static-icon">🔗</span>
         </div>
         <span class="cover-preview-overlay">Visit Live Site ↗</span>
