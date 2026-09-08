@@ -103,6 +103,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       screenshotUrl: project.screenshotUrl,
       academic: !!project.academic,
       priority: project.priority ?? DEFAULT_PRIORITY,
+      noEmbed: !!project.noEmbed,
     };
   }
 

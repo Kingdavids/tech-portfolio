@@ -15,4 +15,6 @@ export interface WorkItem {
   screenshotUrl?: string;
   academic: boolean;
   priority: number;
+  /** Skip the live iframe preview (e.g. liveUrl points back at this same site). */
+  noEmbed?: boolean;
 }

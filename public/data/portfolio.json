@@ -19,7 +19,8 @@
     "link": "https://tech.muyiwadavids.com",
     "githubUrl": "https://github.com/Kingdavids/tech-portfolio",
     "tools": ["Angular", "TypeScript", "SSR", "SCSS", "Angular Material"],
-    "priority": 2
+    "priority": 2,
+    "noEmbed": true
   },
 
   {

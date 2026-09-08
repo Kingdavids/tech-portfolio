@@ -34,4 +34,5 @@ export interface Project {
   highlights?: string[];
   academic?: boolean;
   priority?: number;
+  noEmbed?: boolean;
 }
