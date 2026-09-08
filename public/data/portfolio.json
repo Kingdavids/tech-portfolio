@@ -8,6 +8,7 @@
     "githubUrl": "https://github.com/Kingdavids/royalwaycc-space",
     "tools": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Stripe", "MySQL", "Zod", "Framer Motion", "Nodemailer"],
     "highlights": ["Stripe Payments"],
+    "screenshotUrl": "images/screenshot-royalway-space-rental.jpg",
     "priority": 1
   },
 
@@ -19,6 +20,7 @@
     "link": "https://tech.muyiwadavids.com",
     "githubUrl": "https://github.com/Kingdavids/tech-portfolio",
     "tools": ["Angular", "TypeScript", "SSR", "SCSS", "Angular Material"],
+    "screenshotUrl": "images/screenshot-tech-portfolio.jpg",
     "priority": 2,
     "noEmbed": true
   },
@@ -30,6 +32,7 @@
     "year": "2025",
     "link": "https://app.ovbiedoapp.ca/",
     "tools": ["AWS", "Azure", "Docker", "Terraform"],
+    "screenshotUrl": "images/screenshot-ovbiedo-app.jpg",
     "priority": 3
   },
 
@@ -41,6 +44,7 @@
     "link": "https://muyiwadavids.com",
     "tools": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     "highlights": ["AI Chat Companion"],
+    "screenshotUrl": "images/screenshot-creative-ecosystem.jpg",
     "priority": 4
   },
 
@@ -52,6 +56,7 @@
     "link": "https://podcast.muyiwadavids.com",
     "githubUrl": "https://github.com/Kingdavids/tea_for_chat",
     "tools": ["React", "Vite", "EmailJS"],
+    "screenshotUrl": "images/screenshot-tea-for-chat.jpg",
     "priority": 5
   },
 
@@ -62,6 +67,7 @@
     "year": "2025",
     "link": "https://media.muyiwadavids.com",
     "tools": ["React", "Tailwind CSS", "AWS Amplify", "Postman", "Figma"],
+    "screenshotUrl": "images/screenshot-media-portfolio.jpg",
     "priority": 6
   },
 
@@ -72,6 +78,7 @@
     "year": "2024",
     "link": "https://www.saxmadeeasy.com",
     "tools": ["HTML", "CSS", "Figma"],
+    "screenshotUrl": "images/screenshot-sax-made-easy.jpg",
     "academic": true,
     "priority": 7
   },
