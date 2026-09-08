@@ -41,6 +41,15 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   // mismatch risk between server and client.
   revealed = false;
 
+  // Defaults true to match SSR output (no hydration mismatch); flipped to
+  // false in ngAfterViewInit on narrow/touch viewports before the browser
+  // has a chance to start loading any iframe near the viewport. The tilt
+  // hover effect those previews exist for never fires on touch anyway, so
+  // mobile was paying full memory cost (up to 6 concurrent embedded live
+  // sites) for zero benefit — a likely cause of mobile tabs reloading under
+  // memory pressure.
+  useLiveEmbeds = true;
+
   constructor(
     private projectService: ProjectService,
     private springBootProjectService: SpringBootProjectService
@@ -64,6 +73,10 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    const isTouchOrNarrow = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+    if (isTouchOrNarrow) {
+      this.useLiveEmbeds = false;
+    }
     this.revealObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
