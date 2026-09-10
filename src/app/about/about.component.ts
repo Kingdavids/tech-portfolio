@@ -35,11 +35,11 @@ export class AboutComponent implements OnInit, OnDestroy {
         skills: ["Slack", "Linear", "Jira", "Git"],
       },
     ],
-    describe: "Hi, My name is Olumuyiwa David Ogunniyi, an innovative and detail-oriented junior Software Developer with a strong foundation in full-stack web development, system administration, and scalable application design. I specialize in building clean, responsive user experiences with Angular, React, TypeScript, and Material Design just like this one, complemented by hands-on experience in backend systems, database modeling, and Linux-based service configuration.\n" +
+    describe: "My name is Olumuyiwa David Ogunniyi. I'm a junior software developer with a background in full-stack web development, system administration, and application design. Most of my work is in Angular, React, TypeScript, and Material Design (this site included), plus backend systems, database modeling, and Linux-based service configuration.\n" +
       "\n" +
-      "My recent projects span a range of modern development challenges — from designing a minimalist Angular portfolio with custom routing and search filtering, to implementing secure services (FTP, NFS, Samba, Sendmail) in virtualized Linux environments. I’ve also led the development of normalized database models and RESTful APIs, contributing to efficient, maintainable codebases and cross-functional team collaboration.\n" +
+      "Recent projects include this Angular portfolio, with custom routing and search filtering, and a set of Linux services (FTP, NFS, Samba, Sendmail) configured and secured in virtualized environments. I've also built normalized database models and RESTful APIs, working across teams to keep the resulting codebases maintainable.\n" +
       "\n" +
-      "Alongside my own builds, I contribute to product engineering at Averil and evaluate AI coding-agent output for systems like Codex and Claude Code at G2i and DataAnnotation — work that sharpens how I judge code quality, not just how I write it. I'm passionate about turning complex ideas into intuitive digital experiences, and I'm always eager to explore emerging technologies that improve performance, accessibility, and maintainability."
+      "Alongside my own projects, I contribute to product engineering at Averil, and I evaluate AI coding-agent output for Codex and Claude Code through G2i and DataAnnotation. That's changed how carefully I read someone else's code, which turns out to be a different skill from writing my own. I like turning a complicated idea into something people can use, and I keep an eye on new tools that make software faster, more accessible, or easier to maintain."
   };
 
   get bioParagraphs(): string[] {

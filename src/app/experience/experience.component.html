@@ -4,7 +4,7 @@
       <h3 class="experience-role">{{ entry.role }}</h3>
       <span class="experience-company">{{ entry.company }}</span>
     </div>
-    <span class="experience-location">{{ entry.location }}</span>
+    <span class="experience-location">{{ entry.location }} · {{ entry.dates }}</span>
     <ul class="experience-bullets">
       <li *ngFor="let bullet of entry.bullets">{{ bullet }}</li>
     </ul>

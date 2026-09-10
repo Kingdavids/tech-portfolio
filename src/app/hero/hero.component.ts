@@ -22,7 +22,7 @@ interface Stat {
 export class HeroComponent implements AfterViewInit, OnDestroy {
   name = 'Muyiwa Davids';
   role = 'Full-Stack Developer';
-  tagline = 'I build clean, scalable web applications — from Angular and React front ends to Spring Boot and Node backends — with a focus on real-world, production-ready systems.';
+  tagline = 'I build clean, scalable web applications, from Angular and React front ends to Spring Boot and Node backends, with a focus on real-world, production-ready systems.';
 
   stats: Stat[] = [
     { target: 9, suffix: '+', display: '9+', label: 'Projects shipped' },
