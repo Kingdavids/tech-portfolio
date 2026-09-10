@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <script>if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }</script>
+  <script>
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+    if (location.hash) {
+      // Strip a stray hash (e.g. #work from browser address-bar
+      // autocomplete) so it doesn't linger in the address bar or get
+      // carried into a reload or share.
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    // Lock scrolling for the rest of this load. Two different browser
+    // mechanisms can put the page somewhere other than the top on load --
+    // a URL fragment's native "scroll to that element", and the browser's
+    // own memory of this page's last scroll position on a plain reload
+    // (scrollRestoration = 'manual' reduces this but does not reliably
+    // stop it). Either can also reapply itself late, after fonts/images
+    // finish loading and shift the layout, which is what defeats a
+    // one-time reset performed earlier in the load. Locking scrolling
+    // outright, for every load, and only releasing it once the page has
+    // fully settled at the top, is the only technique that has actually
+    // held up against both.
+    document.documentElement.style.overflow = 'hidden';
+    window.addEventListener('load', function () {
+      requestAnimationFrame(function () {
+        window.scrollTo(0, 0);
+        document.documentElement.style.overflow = '';
+      });
+    });
+  </script>
   <title>Muyiwa Davids | Full-Stack Developer</title>
-  <meta name="description" content="Muyiwa Davids — Full-Stack Developer building clean, scalable web applications with Angular, React, Spring Boot, and Node.js. Based in Ontario, Canada.">
+  <meta name="description" content="Muyiwa Davids | Full-Stack Developer building clean, scalable web applications with Angular, React, Spring Boot, and Node.js. Based in Ontario, Canada.">
   <meta name="author" content="Muyiwa Davids">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://tech.muyiwadavids.com/">

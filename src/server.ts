@@ -25,13 +25,19 @@ const commonEngine = new CommonEngine();
  */
 
 /**
- * Serve static files from /browser
+ * Serve static files from /browser. index.html is excluded here (index:
+ * false) so requests for '/' always fall through to the SSR render handler
+ * below instead of being served as a statically cached file -- otherwise
+ * express.static's 1-year maxAge, meant for the content-hashed JS/CSS
+ * bundles, also gets applied to index.html, and browsers then keep serving
+ * a stale copy of it indefinitely regardless of how many times the app is
+ * rebuilt and redeployed.
  */
 app.get(
   '**',
   express.static(browserDistFolder, {
     maxAge: '1y',
-    index: 'index.html'
+    index: false
   }),
 );
 
