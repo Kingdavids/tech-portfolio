@@ -105,6 +105,12 @@
       <div class="chip-row">
         <span class="chip" *ngFor="let tag of item.tags">{{ tag }}</span>
       </div>
+      <button
+        *ngIf="item.star"
+        type="button"
+        class="view-details-btn"
+        (click)="openDetails(item)"
+      >View case study →</button>
       <div class="work-actions" *ngIf="item.githubUrl || (item.liveUrl && item.videoUrl)">
         <a
           *ngIf="item.githubUrl"

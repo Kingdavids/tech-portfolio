@@ -11,11 +11,17 @@
       "Threaded discussions with nested replies",
       "Admin-only thread locking and deletion",
       "Session-based authentication with Spring Security",
-      "Zero external setup — self-contained in-memory H2 database"
+      "Zero external setup: self-contained in-memory H2 database"
     ],
     "year": "2026",
     "screenshots": [],
-    "priority": 9
+    "priority": 9,
+    "star": {
+      "situation": "I'd used internal tools with role-based access plenty of times, but never built one, and I wanted to know what that took.",
+      "task": "Build a role-gated discussion platform where employees and managers register with access codes and admins can moderate.",
+      "action": "Built it with Spring Boot, Spring Security, and Spring Data JDBC, with self-registration via access codes, threaded discussions, and admin-only thread locking and deletion, running self-contained against an in-memory H2 database.",
+      "result": "A fully working internal forum that needs zero external setup to run and demo."
+    }
   },
   {
     "slug": "novacore-forum",
@@ -33,23 +39,35 @@
     ],
     "year": "2026",
     "screenshots": [],
-    "screenshotUrl": "images/screenshot-novacore-forum.jpg"
+    "screenshotUrl": "images/screenshot-novacore-forum.jpg",
+    "star": {
+      "situation": "Corporate Forum worked, but it wasn't secure enough to trust with real employee credentials.",
+      "task": "Rebuild the same concept from scratch, hardened for production-level security.",
+      "action": "Added full HTTPS with a self-signed PKCS12 keystore, locked down session cookies with HttpOnly, Secure, and SameSite=Strict, gated the H2 console behind admin auth, and made registration codes one-time use.",
+      "result": "A hardened version of the same forum, and the project where the security decisions finally made sense to me."
+    }
   },
   {
     "slug": "thymeleaf-fragments-demo",
     "title": "Thymeleaf Fragments Showcase",
     "tagline": "Modular server-rendered UI built from reusable Thymeleaf fragments",
-    "description": "A focused demonstration of Thymeleaf's fragment composition model — a single product-listing page assembled at render time from independent head, body, and footer fragments, backed by a seeded in-memory catalog.",
+    "description": "A focused demonstration of Thymeleaf's fragment composition model: a single product-listing page assembled at render time from independent head, body, and footer fragments, backed by a seeded in-memory catalog.",
     "techStack": ["Spring Boot 4.1", "Thymeleaf", "H2 Database", "Java 25"],
     "category": "Backend",
     "keyFeatures": [
       "Page composed from independent head/body/footer fragments",
       "Demonstrates Thymeleaf's th:insert / th:replace composition model",
       "Seeded product catalog on startup",
-      "No authentication layer — purely a templating-architecture example"
+      "No authentication layer: purely a templating-architecture example"
     ],
     "year": "2026",
-    "screenshots": []
+    "screenshots": [],
+    "star": {
+      "situation": "I wanted to properly understand Thymeleaf's fragment composition model instead of copying boilerplate without knowing why it worked.",
+      "task": "Build something that used the pattern for real, rather than a project that only mentioned it in passing.",
+      "action": "Built a single product-listing page assembled at render time from independent head, body, and footer fragments, backed by a seeded in-memory catalog.",
+      "result": "A working demonstration of server-rendered fragment composition, and a pattern I can reuse directly on future Thymeleaf projects."
+    }
   },
   {
     "slug": "role-based-auth-demo",
@@ -66,7 +84,13 @@
     ],
     "year": "2026",
     "screenshots": [],
-    "screenshotUrl": "images/screenshot-role-based-auth-demo.jpg"
+    "screenshotUrl": "images/screenshot-role-based-auth-demo.jpg",
+    "star": {
+      "situation": "Letting users choose their own role at signup is a common real-world pattern, and it's easy to get wrong.",
+      "task": "Build a demo where the chosen role holds up on every protected route, well past the signup form that sets it.",
+      "action": "Built a Spring Security app where new users pick USER, ADMIN, or both at registration, with an ADMIN-gated products page and automatic HTTP-to-HTTPS redirection.",
+      "result": "A working reference for exactly how authority-based route guarding should behave."
+    }
   },
   {
     "slug": "in-memory-auth-demo",
@@ -83,25 +107,37 @@
     ],
     "year": "2026",
     "screenshots": [],
-    "screenshotUrl": "images/screenshot-in-memory-auth-demo.jpg"
+    "screenshotUrl": "images/screenshot-in-memory-auth-demo.jpg",
+    "star": {
+      "situation": "I wanted the simplest possible teaching example for Spring Security, without a database schema getting in the way.",
+      "task": "Strip a real security setup down to its essential parts.",
+      "action": "Built it with two hardcoded users in an InMemoryUserDetailsManager, demonstrating role-based route protection and access-denied handling.",
+      "result": "The example I go back to whenever I need to explain Spring Security without a whiteboard's worth of schema."
+    }
   },
   {
     "slug": "book-haven",
     "title": "Book Haven",
     "tagline": "Thymeleaf client performing full CRUD against a separate REST API",
-    "description": "A two-service architecture: a Thymeleaf UI client that performs full CRUD on a book catalog purely by calling a separate, independently deployable REST API over HTTP via RestTemplate — no shared database access between the two services.",
+    "description": "A two-service architecture: a Thymeleaf UI client that performs full CRUD on a book catalog purely by calling a separate, independently deployable REST API over HTTP via RestTemplate, with no shared database access between the two services.",
     "techStack": ["Spring Boot 4.1", "Thymeleaf", "RestTemplate", "Spring Web REST API", "H2 Database", "Java 25"],
     "category": "Backend",
     "keyFeatures": [
       "Two independently deployable Spring Boot services (UI client + REST API)",
-      "Full CRUD — create, read, update, delete — for a book catalog",
+      "Full CRUD (create, read, update, delete) for a book catalog",
       "UI talks to the API purely over HTTP via RestTemplate",
       "Realistic client/server microservice split"
     ],
     "year": "2026",
     "screenshots": [],
     "screenshotUrl": "images/screenshot-book-haven.jpg",
-    "priority": 11
+    "priority": 11,
+    "star": {
+      "situation": "It's easy to build a fake microservice split where the UI secretly still shares a database with its 'API.'",
+      "task": "Build two genuinely independent services that only talk to each other over HTTP.",
+      "action": "Built a Thymeleaf UI client that performs full CRUD on a book catalog purely by calling a separate REST API via RestTemplate, with no shared database access between the two.",
+      "result": "Two services that can be deployed and scaled independently, exactly like a real client/backend split."
+    }
   },
   {
     "slug": "linux-network-services-lab",
@@ -119,6 +155,12 @@
     "year": "2026",
     "screenshots": [],
     "academic": true,
-    "priority": 12
+    "priority": 12,
+    "star": {
+      "situation": "Most developers never touch the network layer their app runs on top of.",
+      "task": "Configure that layer myself instead of treating it as someone else's problem.",
+      "action": "Configured and validated FTP, NFS, Samba, and Sendmail across virtualized Linux environments, with attention to file permissions and repeatable administration steps.",
+      "result": "I can now read a network-layer error and know what to check instead of guessing."
+    }
   }
 ]

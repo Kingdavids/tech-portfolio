@@ -1,5 +1,12 @@
 export type WorkCategory = 'Frontend' | 'Backend' | 'Full-Stack' | 'Cloud/DevOps' | 'Desktop & CLI' | 'Systems' | 'Process';
 
+export interface StarStory {
+  situation: string;
+  task: string;
+  action: string;
+  result: string;
+}
+
 export interface WorkItem {
   slug: string;
   category: WorkCategory;
@@ -17,4 +24,5 @@ export interface WorkItem {
   priority: number;
   /** Skip the live iframe preview (e.g. liveUrl points back at this same site). */
   noEmbed?: boolean;
+  star?: StarStory;
 }

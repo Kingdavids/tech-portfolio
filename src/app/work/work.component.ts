@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, V
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
 import { Project } from '../interfaces/portfolio-revised';
@@ -10,6 +11,7 @@ import { WorkCategory, WorkItem } from '../interfaces/work-item';
 import { ProjectService } from '../services/project.service';
 import { SpringBootProjectService } from '../services/spring-boot-project.service';
 import { TiltDirective } from '../shared/tilt.directive';
+import { WorkDetailDialogComponent } from './work-detail-dialog.component';
 
 type Filter = 'All' | WorkCategory;
 
@@ -34,6 +36,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   private revealObserver?: IntersectionObserver;
   private readonly platformId = inject(PLATFORM_ID);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly dialog = inject(MatDialog);
   private readonly safeUrlCache = new Map<string, SafeResourceUrl>();
 
   // Cards always render (both platforms); this only gates the CSS entrance
@@ -120,6 +123,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       academic: !!project.academic,
       priority: project.priority ?? DEFAULT_PRIORITY,
       noEmbed: !!project.noEmbed,
+      star: project.star,
     };
   }
 
@@ -139,7 +143,17 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       screenshotUrl: project.screenshotUrl,
       academic: !!project.academic,
       priority: project.priority ?? DEFAULT_PRIORITY,
+      star: project.star,
     };
+  }
+
+  openDetails(item: WorkItem): void {
+    this.dialog.open(WorkDetailDialogComponent, {
+      data: item,
+      maxWidth: '90vw',
+      panelClass: 'work-detail-panel',
+      autoFocus: false,
+    });
   }
 
   setFilter(filter: Filter): void {

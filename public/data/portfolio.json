@@ -9,7 +9,13 @@
     "tools": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Stripe", "MySQL", "Zod", "Framer Motion", "Nodemailer"],
     "highlights": ["Stripe Payments"],
     "screenshotUrl": "images/screenshot-royalway-space-rental.jpg",
-    "priority": 1
+    "priority": 1,
+    "star": {
+      "situation": "Royalway Christian Centre was booking their private event hall in Ellicott City by phone and email, with no way for people to see pricing or layouts online.",
+      "task": "Build a booking platform that could take real deposits, show pricing for different room setups, and confirm bookings automatically.",
+      "action": "Built it solo with the Next.js App Router and MySQL for reservations, added Stripe for deposits and payment collection, an interactive layout visualizer for theater, round-table, and open-floor setups, a real-time pricing calculator, Zod-validated booking forms, and automated confirmation emails through Nodemailer.",
+      "result": "The platform is live at space.royalwaycc.org and is processing real venue bookings and payments today."
+    }
   },
 
   {
@@ -22,7 +28,13 @@
     "tools": ["Angular", "TypeScript", "SSR", "SCSS", "Angular Material"],
     "screenshotUrl": "images/screenshot-tech-portfolio.jpg",
     "priority": 2,
-    "noEmbed": true
+    "noEmbed": true,
+    "star": {
+      "situation": "My old portfolio was a mobile-web-development coursework project, not something I could confidently point recruiters to.",
+      "task": "Rebuild it into a real production site that reflected how I work, one that could survive real visitors on real devices.",
+      "action": "Rebuilt it in Angular 19 with server-side rendering, structured JSON-LD metadata, a component-driven design system, and scroll-based interactions.",
+      "result": "It's the site you're looking at right now, and it's doubled as a live testbed for real production issues, including an AWS CloudFront caching bug and a mobile memory leak from live iframe previews that I found and fixed on this exact page."
+    }
   },
 
   {
@@ -33,23 +45,35 @@
     "link": "https://app.ovbiedoapp.ca/",
     "tools": ["AWS", "Azure", "Docker", "Terraform"],
     "screenshotUrl": "images/screenshot-ovbiedo-app.jpg",
-    "priority": 3
+    "priority": 3,
+    "star": {
+      "situation": "The Edo community in Montreal needed a better way to organize and promote their events than word of mouth and scattered flyers.",
+      "task": "Join the cloud operations team and help take the app from a simple event listing tool to a full ticketing platform as demand grew.",
+      "action": "Worked across AWS, Azure, Docker, and Terraform to build out the cloud infrastructure supporting the app as it scaled.",
+      "result": "It's now a live web app with ticketing built in, also available on the Play Store and App Store."
+    }
   },
 
   {
-    "title": "Muyiwa Davids — Creative Ecosystem",
-    "description": "Designed and built a personal brand hub unifying media, technology, and podcast work into one experience with Next.js 16, React 19, and Tailwind CSS 4, including an AI companion chat interface that helps visitors navigate the site and ask about bookings. Currently in active development.",
+    "title": "Muyiwa Davids: Creative Ecosystem",
+    "description": "Designed and built a personal brand hub that brings together media, technology, and podcast work in one place, using Next.js 16, React 19, and Tailwind CSS 4. It includes an AI companion chat that helps visitors navigate the site and ask about bookings. Currently in active development.",
     "category": "Full-Stack",
     "year": "2026",
     "link": "https://muyiwadavids.com",
     "tools": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     "highlights": ["AI Chat Companion"],
     "screenshotUrl": "images/screenshot-creative-ecosystem.jpg",
-    "priority": 4
+    "priority": 4,
+    "star": {
+      "situation": "My media, tech, and podcast work were scattered across separate sites with nothing tying them together.",
+      "task": "Build one personal brand hub that could hold all of it and help visitors find their way around.",
+      "action": "Built it with Next.js 16, React 19, and Tailwind CSS 4, including an AI companion chat scoped to answer questions about my work and handle booking inquiries.",
+      "result": "Still in active development, but the core site and the AI companion are both live."
+    }
   },
 
   {
-    "title": "Tea for Chat — Podcast Platform",
+    "title": "Tea for Chat: Podcast Platform",
     "description": "Built a podcast website for Tea for Chat, a conversation-and-storytelling podcast hosted by Muyiwa Davids, with host and episode information, a Spotify listen-in, and a guest-request workflow backed by EmailJS.",
     "category": "Frontend",
     "year": "2025",
@@ -57,18 +81,30 @@
     "githubUrl": "https://github.com/Kingdavids/tea_for_chat",
     "tools": ["React", "Vite", "EmailJS"],
     "screenshotUrl": "images/screenshot-tea-for-chat.jpg",
-    "priority": 5
+    "priority": 5,
+    "star": {
+      "situation": "Tea for Chat, the podcast I host, only had a Spotify link, no real home online.",
+      "task": "Build a site where listeners could find episodes and potential guests could reach out directly.",
+      "action": "Built it with React and Vite, with host and episode information, a Spotify listen-in, and a guest-request form backed by EmailJS.",
+      "result": "Live at podcast.muyiwadavids.com, and guests now reach out through the site instead of me chasing them down manually."
+    }
   },
 
   {
     "title": "Media Portfolio",
-    "description": "Built my first full-stack product end to end — frontend, backend, and deployment — with React and Tailwind CSS, hosted on AWS Amplify. This project bridged coursework and a real, production-facing deliverable.",
+    "description": "Built my first full-stack product end to end (frontend, backend, and deployment) with React and Tailwind CSS, hosted on AWS Amplify. It was my bridge from coursework to a real, production-facing deliverable.",
     "category": "Frontend",
     "year": "2025",
     "link": "https://media.muyiwadavids.com",
     "tools": ["React", "Tailwind CSS", "AWS Amplify", "Postman", "Figma"],
     "screenshotUrl": "images/screenshot-media-portfolio.jpg",
-    "priority": 6
+    "priority": 6,
+    "star": {
+      "situation": "I'd finished coursework in React and backend basics but hadn't shipped anything real on my own, start to finish.",
+      "task": "Design, build, and deploy a complete product without a class assignment structuring the work for me.",
+      "action": "Built it with React and Tailwind CSS, tested the API independently with Postman, and deployed it on AWS Amplify.",
+      "result": "My first fully shipped, production-facing project, and the one that taught me habits I still use on every project since."
+    }
   },
 
   {
@@ -80,7 +116,13 @@
     "tools": ["HTML", "CSS", "Figma"],
     "screenshotUrl": "images/screenshot-sax-made-easy.jpg",
     "academic": true,
-    "priority": 7
+    "priority": 7,
+    "star": {
+      "situation": "A small team had a Figma design for a responsive site and needed someone to turn it into working code.",
+      "task": "Build the initial site structure and styling from that design so teammates could pick it up and finish it.",
+      "action": "Built it with semantic HTML and modular CSS.",
+      "result": "Handed off cleanly, and teammates completed and deployed it from there."
+    }
   },
 
   {
@@ -90,7 +132,13 @@
     "year": "2026",
     "videoUrl": "videos/jigzack-waste-management-demo.mp4",
     "tools": ["Next.js", "React", "Supabase", "PostgreSQL", "TypeScript", "Tailwind CSS"],
-    "priority": 8
+    "priority": 8,
+    "star": {
+      "situation": "A government-approved waste disposal company was running signup, billing, and operations manually, with no system to support it.",
+      "task": "Build a platform that could serve three very different users, customers, employees, and admins, without letting any of them see data they shouldn't.",
+      "action": "Built it with Next.js, Supabase, and PostgreSQL, with separate portals for service signup and approval workflows, monthly billing and invoicing, and operational oversight, backed by role-based access control at the database level.",
+      "result": "Still in active development."
+    }
   },
 
   {
@@ -99,7 +147,13 @@
     "category": "Cloud/DevOps",
     "tools": ["Azure", "Microsoft Teams", "CI/CD"],
     "year": "2025",
-    "priority": 10
+    "priority": 10,
+    "star": {
+      "situation": "The engineering team had no way of knowing a deployment had failed or a service had gone down without manually checking a dashboard.",
+      "task": "Give the team real-time visibility into failures without adding to anyone's manual workload.",
+      "action": "Integrated Azure Pipelines and service alerts with Microsoft Teams webhooks.",
+      "result": "The team now finds out about failures and downtime in seconds, in the channel they already use."
+    }
   },
 
   {
@@ -110,18 +164,30 @@
     "videoUrl": "videos/blackjack-gui-demo.mp4",
     "posterUrl": "images/poster-blackjack-gui.jpg",
     "tools": ["C#", ".NET 9", "WPF"],
-    "academic": true
+    "academic": true,
+    "star": {
+      "situation": "Most of my work is request/response web apps, and I wanted practice with a different kind of application logic.",
+      "task": "Build a real desktop game with its own game-state management, not a static mockup.",
+      "action": "Built a WPF blackjack game in C#, with a dedicated game-engine class handling hit/stand logic, card animations, and sound effects.",
+      "result": "A fully playable game with real state management, built entirely outside a web framework."
+    }
   },
 
   {
     "title": "Shape Shooter",
-    "description": "Built a WPF shape-shooting game in C# — click and drag on a canvas to aim and fire, with DispatcherTimer-driven animation loops for bullet movement and target spawning.",
+    "description": "Built a WPF shape-shooting game in C#: click and drag on a canvas to aim and fire, with DispatcherTimer-driven animation loops for bullet movement and target spawning.",
     "category": "Desktop & CLI",
     "year": "2026",
     "videoUrl": "videos/shape-shooter-demo.mp4",
     "posterUrl": "images/poster-shape-shooter.jpg",
     "tools": ["C#", ".NET 9", "WPF"],
-    "academic": true
+    "academic": true,
+    "star": {
+      "situation": "I wanted more practice with continuous, timer-driven update loops, which web development rarely calls for.",
+      "task": "Build a game with real-time aiming, firing, and target spawning.",
+      "action": "Built a WPF shape-shooting game in C# where you click and drag on a canvas to aim and fire, driven by DispatcherTimer-based animation loops for bullet movement and target spawning.",
+      "result": "A working real-time game loop I can point to when talking about state and timing outside a web context."
+    }
   },
 
   {
@@ -130,7 +196,13 @@
     "category": "Full-Stack",
     "year": "2025",
     "tools": ["Node.js", "MySQL", "EJS", "JavaScript"],
-    "academic": true
+    "academic": true,
+    "star": {
+      "situation": "A web-programming class assignment on country data felt worth taking further than the minimum requirement.",
+      "task": "Turn it into a fuller country-information directory instead of stopping at the assignment brief.",
+      "action": "Built it with Node.js, MySQL, and EJS, listing demographic, geographic, and cultural data for every country.",
+      "result": "A working full-stack directory built entirely on server-rendered EJS templates."
+    }
   },
 
   {
@@ -139,7 +211,13 @@
     "category": "Desktop & CLI",
     "year": "2025",
     "tools": ["Java", "NetBeans"],
-    "academic": true
+    "academic": true,
+    "star": {
+      "situation": "I wanted practice with object-oriented design outside of a web framework.",
+      "task": "Build a card game engine from scratch, one that could handle more than a single round.",
+      "action": "Built it in Java, implementing shuffling, turn-based play, and card-matching logic.",
+      "result": "A working card game engine with real object-oriented structure underneath it."
+    }
   },
 
   {
@@ -148,7 +226,13 @@
     "category": "Process",
     "year": "2025",
     "tools": ["Jira"],
-    "academic": true
+    "academic": true,
+    "star": {
+      "situation": "A four-person team needed to plan and track a scheduling application as a class project.",
+      "task": "Get hands-on practice with agile project management instead of reading about it.",
+      "action": "Planned and tracked the project through sprints in Jira.",
+      "result": "Delivered the scheduling app as a team, with a full sprint history to show for it."
+    }
   },
 
   {
@@ -157,6 +241,12 @@
     "category": "Systems",
     "year": "2025",
     "tools": ["Visual Paradigm"],
-    "academic": true
+    "academic": true,
+    "star": {
+      "situation": "A five-person team was asked to design a scheduling, payment, and reporting system for a gym, without writing a line of code.",
+      "task": "Produce a full system design specification that a real team could build from.",
+      "action": "Produced context diagrams, UML models, use cases, and wireframes in Visual Paradigm.",
+      "result": "A complete system design specification, from the initial diagrams through to the final wireframes."
+    }
   }
 ]

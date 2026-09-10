@@ -1,0 +1,49 @@
+<div class="detail-dialog">
+  <button mat-dialog-close class="close-btn" aria-label="Close">✕</button>
+
+  <div class="detail-head">
+    <div class="detail-meta">
+      <span class="detail-category" [class]="categoryClass(item.category)">{{ item.category }}</span>
+      <span class="detail-year">{{ item.year }}</span>
+    </div>
+    <h2 mat-dialog-title class="detail-title">{{ item.title }}</h2>
+    <p class="detail-description">{{ item.description }}</p>
+  </div>
+
+  <div mat-dialog-content class="detail-content">
+    <div class="star-grid" *ngIf="item.star as star">
+      <div class="star-block">
+        <span class="star-label">Situation</span>
+        <p>{{ star.situation }}</p>
+      </div>
+      <div class="star-block">
+        <span class="star-label">Task</span>
+        <p>{{ star.task }}</p>
+      </div>
+      <div class="star-block">
+        <span class="star-label">Action</span>
+        <p>{{ star.action }}</p>
+      </div>
+      <div class="star-block star-result">
+        <span class="star-label">Result</span>
+        <p>{{ star.result }}</p>
+      </div>
+    </div>
+
+    <div class="detail-tags">
+      <span class="detail-tag" *ngFor="let tag of item.tags">{{ tag }}</span>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="detail-actions">
+    <a *ngIf="item.liveUrl" [href]="item.liveUrl" target="_blank" rel="noopener noreferrer" class="detail-link detail-link-primary">
+      Visit {{ displayHost(item.liveUrl) }} ↗
+    </a>
+    <a *ngIf="item.githubUrl" [href]="item.githubUrl" target="_blank" rel="noopener noreferrer" class="detail-link">
+      GitHub →
+    </a>
+    <a *ngIf="item.videoUrl" [href]="item.videoUrl" target="_blank" rel="noopener noreferrer" class="detail-link">
+      Demo Video →
+    </a>
+  </div>
+</div>

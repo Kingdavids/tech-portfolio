@@ -1,4 +1,4 @@
-import { WorkCategory } from './work-item';
+import { StarStory, WorkCategory } from './work-item';
 
 export interface SpringBootProject {
   slug: string;
@@ -18,4 +18,5 @@ export interface SpringBootProject {
   highlights?: string[];
   academic?: boolean;
   priority?: number;
+  star?: StarStory;
 }

@@ -1,6 +1,6 @@
 // src/app/interfaces/portfolio-revised.ts
 
-import { WorkCategory } from './work-item';
+import { StarStory, WorkCategory } from './work-item';
 
 export interface SkillTier {
   label: string;
@@ -16,6 +16,7 @@ export interface Information {
 
 export interface Contact {
   social: string;
+  handle: string;
   icon: string;
   url: string;
 }
@@ -35,4 +36,5 @@ export interface Project {
   academic?: boolean;
   priority?: number;
   noEmbed?: boolean;
+  star?: StarStory;
 }
