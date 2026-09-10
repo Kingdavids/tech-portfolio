@@ -1,21 +1,30 @@
 <div class="contact-grid">
   <div class="contact-left">
-    <p class="contact-intro">Whether it's a project, a role, or just a question — I'd love to hear from you. Find me on any of these, or send a message directly.</p>
+    <p class="contact-intro">Whether it's a project, a role, or just a question, I'd love to hear from you.</p>
 
     <h3 class="sr-only">Connect with me</h3>
-    <div class="contacts-container">
-      <mat-card *ngFor="let c of contacts" class="glass-card">
-        <a [href]="c.url" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <mat-icon class="icon" [svgIcon]="c.icon"></mat-icon>
-          <span class="social-name">{{ c.social }}</span>
-        </a>
-      </mat-card>
-    </div>
-
-    <div class="media-portfolio-promo">
-      <p>
-        🎬 Check out my <a href="https://media.muyiwadavids.com" target="_blank" rel="noopener noreferrer">Media Portfolio</a> — built with React & Tailwind, hosted on AWS Amplify!
-      </p>
+    <div class="contact-terminal glass-card">
+      <div class="contact-terminal-bar">
+        <span class="contact-dot contact-dot-red"></span>
+        <span class="contact-dot contact-dot-yellow"></span>
+        <span class="contact-dot contact-dot-green"></span>
+        <span class="contact-terminal-title">zsh &mdash; contact.sh</span>
+      </div>
+      <div class="contact-terminal-body">
+        <p class="contact-terminal-line"><span class="contact-prompt">$</span> cat contact.json</p>
+        <p class="contact-terminal-line contact-json">{{ '{' }}</p>
+        <p class="contact-terminal-line contact-json contact-json-indent">
+          <span class="contact-json-key">"email"</span><span class="contact-json-punct">: </span><a href="mailto:rashydavids@gmail.com" class="contact-json-value">"rashydavids&#64;gmail.com"</a><span class="contact-json-punct">,</span>
+        </p>
+        <p class="contact-terminal-line contact-json contact-json-indent">
+          <span class="contact-json-key">"location"</span><span class="contact-json-punct">: </span><span class="contact-json-value contact-json-static">"Greater Toronto Area, CA"</span><span class="contact-json-punct">,</span>
+        </p>
+        <p class="contact-terminal-line contact-json contact-json-indent" *ngFor="let c of contacts; let last = last">
+          <span class="contact-json-key">"{{ c.social.toLowerCase() }}"</span><span class="contact-json-punct">: </span><a [href]="c.url" target="_blank" rel="noopener noreferrer" class="contact-json-value">"{{ c.handle }}"</a><span class="contact-json-punct" *ngIf="!last">,</span>
+        </p>
+        <p class="contact-terminal-line contact-json">{{ '}' }}</p>
+        <p class="contact-terminal-line"><span class="contact-prompt">$</span> <span class="contact-cursor">&#9612;</span></p>
+      </div>
     </div>
   </div>
 
@@ -46,8 +55,10 @@
         </div>
       </div>
 
-      <button class="btn-primary field-4" type="submit" [disabled]="!reviewForm.valid">
-        Send Message <span class="btn-arrow">→</span>
+      <p class="send-error" *ngIf="sendError">Something went wrong sending that — try again, or email me directly.</p>
+
+      <button class="btn-primary field-4" type="submit" [disabled]="!reviewForm.valid || sending">
+        {{ sending ? 'Sending…' : 'Send Message' }} <span class="btn-arrow" *ngIf="!sending">→</span>
       </button>
     </form>
   </div>
