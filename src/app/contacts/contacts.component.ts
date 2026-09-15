@@ -27,7 +27,7 @@ const EMAILJS_PUBLIC_KEY = 'REPLACE_WITH_PUBLIC_KEY';
 })
 export class ContactsComponent {
   contacts: Contact[] = [
-    { social: 'LinkedIn', handle: 'olumuyiwa-ogunniyi', url: 'https://www.linkedin.com/in/olumuyiwa-ogunniyi-09149890/', icon: 'linkedin' },
+    { social: 'LinkedIn', handle: 'muyiwadavids', url: 'https://www.linkedin.com/in/muyiwadavids/', icon: 'linkedin' },
     { social: 'GitHub', handle: 'Kingdavids', url: 'https://github.com/Kingdavids', icon: 'github' }
   ];
 

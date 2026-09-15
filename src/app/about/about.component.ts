@@ -20,11 +20,19 @@ export class AboutComponent implements OnInit, OnDestroy {
       },
       {
         label: "Working knowledge",
-        skills: ["Node.js", "Express.js", "Java", "Spring Boot", "SQL", "PostgreSQL", "MySQL"],
+        skills: ["Node.js", "Express.js", "Nest.js", "Python", "FastAPI", "Pydantic", "Java", "Spring Boot", "GraphQL", "SQL", "PostgreSQL", "MySQL", "DynamoDB", "Redis", "Redux", "Zustand"],
+      },
+      {
+        label: "AI & ML",
+        skills: ["LLM Integration (OpenAI, Claude)", "RAG", "Agentic AI", "Tool & Function Calling", "Vector Search", "Embeddings", "Semantic Retrieval", "Two-Tower Retrieval Models", "Prompt Engineering", "Evaluation Pipelines"],
+      },
+      {
+        label: "Testing & Automation",
+        skills: ["Jest", "Mocha", "Selenium", "Playwright", "Puppeteer"],
       },
       {
         label: "Hands-on exposure",
-        skills: ["AWS", "Azure", "Docker", "Terraform", "CI/CD"],
+        skills: ["AWS (Amplify, EC2, SES)", "Azure", "Docker", "Terraform", "CI/CD", "GitHub Actions", "Jenkins"],
       },
       {
         label: "Systems",
@@ -35,7 +43,7 @@ export class AboutComponent implements OnInit, OnDestroy {
         skills: ["Slack", "Linear", "Jira", "Git"],
       },
     ],
-    describe: "My name is Olumuyiwa David Ogunniyi. I'm a junior software developer with a background in full-stack web development, system administration, and application design. Most of my work is in Angular, React, TypeScript, and Material Design (this site included), plus backend systems, database modeling, and Linux-based service configuration.\n" +
+    describe: "My name is Olumuyiwa David Ogunniyi. I'm a software engineer with 3+ years of experience building production web applications, AI-powered products, and cloud-integrated systems. Most of my work is in Angular, React, TypeScript, Next.js, and Python/FastAPI (this site included), plus backend services, database modeling, and Linux-based service configuration.\n" +
       "\n" +
       "Recent projects include this Angular portfolio, with custom routing and search filtering, and a set of Linux services (FTP, NFS, Samba, Sendmail) configured and secured in virtualized environments. I've also built normalized database models and RESTful APIs, working across teams to keep the resulting codebases maintainable.\n" +
       "\n" +

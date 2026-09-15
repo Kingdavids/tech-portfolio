@@ -14,10 +14,13 @@
         <p class="contact-terminal-line"><span class="contact-prompt">$</span> cat contact.json</p>
         <p class="contact-terminal-line contact-json">{{ '{' }}</p>
         <p class="contact-terminal-line contact-json contact-json-indent">
-          <span class="contact-json-key">"email"</span><span class="contact-json-punct">: </span><a href="mailto:rashydavids@gmail.com" class="contact-json-value">"rashydavids&#64;gmail.com"</a><span class="contact-json-punct">,</span>
+          <span class="contact-json-key">"email"</span><span class="contact-json-punct">: </span><a href="mailto:muyiwadavids.dev@gmail.com" class="contact-json-value">"muyiwadavids.dev&#64;gmail.com"</a><span class="contact-json-punct">,</span>
         </p>
         <p class="contact-terminal-line contact-json contact-json-indent">
-          <span class="contact-json-key">"location"</span><span class="contact-json-punct">: </span><span class="contact-json-value contact-json-static">"Greater Toronto Area, CA"</span><span class="contact-json-punct">,</span>
+          <span class="contact-json-key">"phone"</span><span class="contact-json-punct">: </span><a href="tel:+14375526807" class="contact-json-value">"+1 (437) 552-6807"</a><span class="contact-json-punct">,</span>
+        </p>
+        <p class="contact-terminal-line contact-json contact-json-indent">
+          <span class="contact-json-key">"location"</span><span class="contact-json-punct">: </span><span class="contact-json-value contact-json-static">"Ontario, Canada"</span><span class="contact-json-punct">,</span>
         </p>
         <p class="contact-terminal-line contact-json contact-json-indent" *ngFor="let c of contacts; let last = last">
           <span class="contact-json-key">"{{ c.social.toLowerCase() }}"</span><span class="contact-json-punct">: </span><a [href]="c.url" target="_blank" rel="noopener noreferrer" class="contact-json-value">"{{ c.handle }}"</a><span class="contact-json-punct" *ngIf="!last">,</span>

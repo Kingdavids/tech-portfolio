@@ -14,42 +14,33 @@ export class ExperienceComponent {
   entries: Experience[] = [
     {
       company: 'Averil',
-      role: 'Software Product Engineer',
-      location: 'Ontario / Remote',
+      role: 'Software Engineer, AI',
+      location: 'Toronto, ON',
       dates: 'Sep 2025 – Present',
       bullets: [
-        'I work across the stack at Averil: responsive web interfaces, backend integrations, and the deployment pipeline, on a small cross-functional product team.',
-        "I turn product requirements into features that hold up over time, and I pay attention to usability, how data moves through them, and how reliably they run once they're live.",
+        "I contribute to Averil's AI-powered product experiences, working across application functionality, backend services, and user-facing features, building and maintaining full-stack functionality across modern JavaScript/TypeScript apps and Python-based backend services.",
+        'I support the integration of AI capabilities into product workflows, and collaborate with product and engineering to improve architecture, reliability, maintainability, and the overall user experience.',
+        'Alongside that, I work part-time as an AI coding evaluator on contract, annotating and reviewing coding-agent output from systems like Codex and Claude Code for correctness and writing feedback aimed at improving the models.',
       ],
     },
     {
-      company: 'DataAnnotation',
-      role: 'AI Coding Evaluator (Contract)',
-      location: 'Remote',
-      dates: 'Jun 2026',
-      bullets: [
-        'Similar work to G2i: reviewing coding-agent output for systems including Codex and Claude Code, checking for correctness and whether the agent did what it was asked.',
-        'I flagged implementation problems, compared competing solutions, and wrote feedback aimed at improving the model, past a simple right-or-wrong mark.',
-      ],
-    },
-    {
-      company: 'G2i',
-      role: 'AI Coding Evaluator (Contract)',
-      location: 'Remote',
-      dates: 'May 2026',
-      bullets: [
-        'I evaluated coding-agent output and developer interactions for systems like Codex and Claude Code, mainly checking whether the code was correct, whether it followed the instructions it was given, and whether the explanation was useful.',
-        'That meant applying my own engineering judgment: catching implementation issues, weighing one solution against another, and writing feedback specific enough for the model to learn from.',
-      ],
-    },
-    {
-      company: 'Gemeaux World Global Resources',
-      role: 'Media-TechOps / DevOps Intern',
-      location: 'Montréal / Remote',
+      company: 'Cloud Enthusiast Hub',
+      role: 'Software Engineer',
+      location: 'Montreal, QC',
       dates: 'Aug 2024 – Aug 2025',
       bullets: [
-        "I supported the company's media-technology infrastructure through DevOps, site reliability, and security-focused operational work.",
-        'I worked with product and infrastructure stakeholders to keep services deployment-ready and operations running dependably.',
+        'I built responsive frontend experiences for Foto-C and internal media-technology dashboards using React, TypeScript, Tailwind CSS, and Material UI, and integrated those components with backend and cloud services supporting media-processing and analytics workflows.',
+        'I developed reusable UI components and contributed to the application design system, and improved usability through accessibility enhancements, responsive design, and frontend performance work, partnering with product stakeholders to translate requirements into intuitive user flows.',
+      ],
+    },
+    {
+      company: 'Techsity',
+      role: 'Software Engineer',
+      location: 'Toronto, ON',
+      dates: 'Aug 2023 – Jul 2024',
+      bullets: [
+        'I contributed to LobeStack, an AI-powered marketing intelligence platform that helps businesses research their brands, generate marketing content, schedule campaigns, and analyze performance across digital channels, building full-stack product features with Next.js, TypeScript, Node.js, and PostgreSQL.',
+        'I developed reusable frontend components and application flows for marketing workflows, integrated them with backend APIs and third-party services for content generation and campaign management, and worked with product and engineering to turn requirements into production-ready features.',
       ],
     },
   ];
