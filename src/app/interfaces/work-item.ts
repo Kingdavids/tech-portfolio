@@ -1,4 +1,4 @@
-export type WorkCategory = 'Frontend' | 'Backend' | 'Full-Stack' | 'Cloud/DevOps' | 'Desktop & CLI' | 'Systems' | 'Process';
+export type WorkCategory = 'Frontend' | 'Backend' | 'Full-Stack' | 'AI/ML' | 'Cloud/DevOps' | 'Desktop & CLI' | 'Systems' | 'Process';
 
 export interface StarStory {
   situation: string;

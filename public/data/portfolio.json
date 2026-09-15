@@ -57,7 +57,7 @@
   {
     "title": "Muyiwa Davids: Creative Ecosystem",
     "description": "Designed and built a personal brand hub that brings together media, technology, and podcast work in one place, using Next.js 16, React 19, and Tailwind CSS 4. It includes an AI companion chat that helps visitors navigate the site and ask about bookings. Currently in active development.",
-    "category": "Full-Stack",
+    "category": "AI/ML",
     "year": "2026",
     "link": "https://muyiwadavids.com",
     "tools": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
@@ -69,6 +69,22 @@
       "task": "Build one personal brand hub that could hold all of it and help visitors find their way around.",
       "action": "Built it with Next.js 16, React 19, and Tailwind CSS 4, including an AI companion chat scoped to answer questions about my work and handle booking inquiries.",
       "result": "Still in active development, but the core site and the AI companion are both live."
+    }
+  },
+
+  {
+    "title": "AI Coding Evaluator — DataAnnotation & G2i",
+    "description": "Contract work evaluating coding-agent output and developer interactions for systems like Codex and Claude Code, checking correctness, instruction-following, and explanation quality, then writing feedback aimed at improving the models.",
+    "category": "AI/ML",
+    "year": "2025 – 2026",
+    "tools": ["Codex", "Claude Code", "Model Evaluation", "Prompt Engineering"],
+    "highlights": ["AI Model Evaluation"],
+    "priority": 9,
+    "star": {
+      "situation": "Coding agents like Codex and Claude Code needed human review to catch mistakes before their output reached real developers.",
+      "task": "Evaluate agent-generated code and developer interactions for correctness, whether the agent followed its instructions, and whether its explanations actually held up, then turn that into feedback the model could learn from.",
+      "action": "Worked contract roles with DataAnnotation and G2i reviewing coding-agent output, comparing competing solutions, flagging implementation issues, and writing feedback grounded in my own engineering judgment rather than a simple right-or-wrong mark.",
+      "result": "Fed structured feedback directly into model improvement, and sharpened how carefully I read someone else's code, a different skill from writing my own."
     }
   },
 

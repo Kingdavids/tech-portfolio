@@ -27,10 +27,10 @@ const DEFAULT_PRIORITY = 100;
 export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   items: WorkItem[] = [];
   filteredItems: WorkItem[] = [];
-  activeFilter: Filter = 'All';
+  activeFilter: Filter = 'Frontend';
   searchTerm = '';
 
-  readonly filters: Filter[] = ['All', 'Frontend', 'Backend', 'Full-Stack', 'Cloud/DevOps', 'Desktop & CLI', 'Systems', 'Process'];
+  readonly filters: Filter[] = ['All', 'Frontend', 'Backend', 'Full-Stack', 'AI/ML', 'Cloud/DevOps', 'Desktop & CLI', 'Systems', 'Process'];
 
   @ViewChild('workListEl') private workListEl!: ElementRef<HTMLElement>;
   private revealObserver?: IntersectionObserver;
