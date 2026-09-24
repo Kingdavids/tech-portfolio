@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <p class="send-error" *ngIf="sendError">Something went wrong sending that — try again, or email me directly.</p>
+      <p class="send-error" *ngIf="sendError">Something went wrong sending that. Try again, or email me directly.</p>
 
       <button class="btn-primary field-4" type="submit" [disabled]="!reviewForm.valid || sending">
         {{ sending ? 'Sending…' : 'Send Message' }} <span class="btn-arrow" *ngIf="!sending">→</span>
