@@ -73,17 +73,17 @@
   },
 
   {
-    "title": "AI Coding Evaluator — DataAnnotation & G2i",
+    "title": "AI Coding Evaluator: DataAnnotation & G2i",
     "description": "Contract work evaluating coding-agent output and developer interactions for systems like Codex and Claude Code, checking correctness, instruction-following, and explanation quality, then writing feedback aimed at improving the models.",
     "category": "AI/ML",
-    "year": "2025 – 2026",
+    "year": "2025 to 2026",
     "tools": ["Codex", "Claude Code", "Model Evaluation", "Prompt Engineering"],
     "highlights": ["AI Model Evaluation"],
     "priority": 9,
     "star": {
       "situation": "Coding agents like Codex and Claude Code needed human review to catch mistakes before their output reached real developers.",
       "task": "Evaluate agent-generated code and developer interactions for correctness, whether the agent followed its instructions, and whether its explanations actually held up, then turn that into feedback the model could learn from.",
-      "action": "Worked contract roles with DataAnnotation and G2i reviewing coding-agent output, comparing competing solutions, flagging implementation issues, and writing feedback grounded in my own engineering judgment rather than a simple right-or-wrong mark.",
+      "action": "Worked contract roles with DataAnnotation and G2i reviewing coding-agent output, comparing competing solutions, flagging implementation issues, and writing feedback that goes past a simple right-or-wrong mark.",
       "result": "Fed structured feedback directly into model improvement, and sharpened how carefully I read someone else's code, a different skill from writing my own."
     }
   },
@@ -142,18 +142,22 @@
   },
 
   {
-    "title": "Jigzack Waste Management Platform",
-    "description": "Building a role-based platform for a government-approved solid waste disposal company, with separate customer, employee, and admin portals covering service signup and approval workflows, monthly billing and invoicing, and operational oversight. In active development.",
+    "title": "Jigzack Cleaning Services Platform",
+    "description": "Live platform for Jigzack Cleaning Services, a LAWMA-approved waste collection company serving Lagos and Port Harcourt. It combines the public website with customer, employee and admin dashboards. Pickup schedules and monthly invoices are generated automatically from each customer's pickup frequency and property details, and every pickup is backed by before and after photos.",
     "category": "Full-Stack",
     "year": "2026",
+    "link": "https://www.jigzackcleaningservices.com",
     "videoUrl": "videos/jigzack-waste-management-demo.mp4",
-    "tools": ["Next.js", "React", "Supabase", "PostgreSQL", "TypeScript", "Tailwind CSS"],
-    "priority": 8,
+    "tools": ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Row Level Security", "Tailwind CSS", "Resend", "Railway", "GitHub Actions"],
+    "highlights": ["Live in Production"],
+    "screenshotUrl": "images/screenshot-jigzack-cleaning-services.jpg",
+    "priority": 0,
+    "noEmbed": true,
     "star": {
-      "situation": "A government-approved waste disposal company was running signup, billing, and operations manually, with no system to support it.",
-      "task": "Build a platform that could serve three very different users, customers, employees, and admins, without letting any of them see data they shouldn't.",
-      "action": "Built it with Next.js, Supabase, and PostgreSQL, with separate portals for service signup and approval workflows, monthly billing and invoicing, and operational oversight, backed by role-based access control at the database level.",
-      "result": "Still in active development."
+      "situation": "Jigzack Cleaning Services, a LAWMA-approved waste collection company in Lagos and Port Harcourt, was running customer signup, pickup scheduling, billing and payments by hand, with no system behind any of it.",
+      "task": "Build one platform for three very different users: customers who want a clear record of pickups and invoices, employees out on the route, and admins who approve accounts and run the business. None of them could be allowed to see data that isn't theirs.",
+      "action": "Built it with Next.js 16 and Supabase and put it on Railway behind the company's own domain. The database has 12 tables and 61 row level security policies, so access control lives in Postgres and the public API key can't read or change anything it shouldn't. Before launch I audited function permissions and revoked public access to the ones that exposed admin data. Customers sign up, confirm their email, submit property details and wait for approval. Employees join by invite, see their assigned pickups, run a timer and upload before and after photos, compressed in the browser so phone photos don't fail. Apartment estates are modeled as a customer account with a units table underneath, so each tenant gets a login against one shared invoice. A parser turns free-text answers like \"twice a week\" into concrete dates, and anything it can't read defaults to weekly and is flagged for an admin. A daily GitHub Actions job keeps pickups scheduled four weeks ahead and creates each month's invoices on the 1st, using per-unit pricing that skips vacant units. The app also sends realtime notifications, generates invoice and receipt PDFs, emails through Resend and publishes structured data for search.",
+      "result": "It's live at jigzackcleaningservices.com, with signup, approvals, scheduling, invoicing and payments handled in one system instead of by hand. The repository has 63 commits since December 2025."
     }
   },
 
