@@ -19,6 +19,25 @@
   },
 
   {
+    "title": "Adisah African Store",
+    "description": "Website and WhatsApp ordering flow for Adisah African Store, an African grocer in Upper Marlboro, MD. Customers build their grocery list on the site and send it straight to WhatsApp, and a redirect-based QR system collects Google reviews without ever needing reprinting.",
+    "category": "Full-Stack",
+    "year": "2026",
+    "link": "https://adisahafricanstore.com",
+    "githubUrl": "https://github.com/Kingdavids/adisah",
+    "tools": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Railway", "Google Analytics", "Search Console"],
+    "highlights": ["WhatsApp Ordering"],
+    "screenshotUrl": "images/screenshot-adisah-african-store.jpg",
+    "priority": 1.5,
+    "star": {
+      "situation": "A Maryland African grocer wanted a real website instead of just a flyer and word of mouth, with ordering that matched how their customers already order: a phone call or a WhatsApp message.",
+      "task": "Build a site from a photo of their flyer as the only source material, ship real ordering and review flows with it, and set up the SEO and analytics a new small-business domain needs from day one.",
+      "action": "Built it with Next.js 16 and Tailwind, with every store detail (hours, address, categories) in one data file so it's easy to correct as the owner confirms more of it. The order page lets a customer build a grocery list and sends it straight into a WhatsApp message instead of a cart and checkout flow nobody running a corner store wants to maintain. Printed review cards point at a short redirect route rather than Google directly, so the QR code never needs reprinting if the review link changes. Added LocalBusiness structured data, a Google Analytics 4 property with key events, and a verified Search Console property, then registered the domain and put the whole thing on Railway with HTTPS.",
+      "result": "Live at adisahafricanstore.com since October 2026, with real orders going out over WhatsApp while the owner works through the product photos and details still pending confirmation."
+    }
+  },
+
+  {
     "title": "Tech Portfolio",
     "description": "Designed and deployed this Angular 19 portfolio with server-side rendering, structured JSON-LD metadata, and a component-driven design system. Started as a mobile-web-development coursework exercise and rebuilt into a production site with scroll-based interactions and accessible, SEO-conscious markup.",
     "category": "Frontend",
