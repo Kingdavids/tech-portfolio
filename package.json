@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "postbuild": "cp dist/portfolio-revised/browser/index.csr.html dist/portfolio-revised/browser/index.html",
+    "postbuild": "node -e \"const f=require('fs'),d='dist/portfolio-revised/browser/';if(!f.existsSync(d+'index.html'))f.copyFileSync(d+'index.csr.html',d+'index.html')\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:portfolioRevised": "node dist/portfolio-revised/server/server.mjs"

@@ -51,6 +51,15 @@ export class ContactsComponent {
   onSubmit(): void {
     if (!this.reviewForm.valid || !isPlatformBrowser(this.platformId) || this.sending) return;
 
+    // Until real EmailJS credentials are set, open the visitor's mail app with the message filled in.
+    if (EMAILJS_SERVICE_ID.startsWith('REPLACE_')) {
+      const { name, email, comment } = this.reviewForm.value;
+      const subject = encodeURIComponent(`Portfolio message from ${name}`);
+      const body = encodeURIComponent(`${comment}\n\n${name}\n${email}`);
+      window.location.href = `mailto:muyiwadavids.dev@gmail.com?subject=${subject}&body=${body}`;
+      return;
+    }
+
     this.sending = true;
     this.sendError = false;
 

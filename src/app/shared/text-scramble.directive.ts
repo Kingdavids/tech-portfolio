@@ -14,6 +14,7 @@ export class TextScrambleDirective implements OnDestroy {
     afterNextRender(() => {
       const finalText = this.el.nativeElement.textContent ?? '';
       if (!finalText.trim()) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       this.observer = new IntersectionObserver(
         ([entry]) => {
@@ -34,7 +35,7 @@ export class TextScrambleDirective implements OnDestroy {
   }
 
   private scramble(finalText: string): void {
-    const totalFrames = 22;
+    const totalFrames = 10;
     const reveal = finalText.split('').map((ch, i) =>
       ch === ' ' ? -1 : Math.floor((i / finalText.length) * totalFrames) + Math.random() * 5
     );

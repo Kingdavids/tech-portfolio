@@ -1,5 +1,5 @@
 <header class="navbar" [class.scrolled]="scrolled">
-  <a class="logo" (click)="onNavClick('home')">
+  <a class="logo" href="#home" aria-label="Back to top" (click)="onNavClick('home'); $event.preventDefault()">
     <span class="logo-mark">&lt;</span>MD<span class="logo-mark">/&gt;</span>
   </a>
   <nav class="nav-pill">
@@ -15,13 +15,15 @@
       class="nav-item"
       [class.active]="activeSection() === section.id"
       [appMagnetic]="0.15"
-      (click)="onNavClick(section.id)"
+      [attr.href]="'#' + section.id"
+      (click)="onNavClick(section.id); $event.preventDefault()"
     >{{ section.label }}</a>
   </nav>
   <a
     class="resume-btn"
-    href="resume/Muyiwa-Davids-Resume.pdf"
-    download="Muyiwa-Davids-Resume.pdf"
+    href="https://cdn.jsdelivr.net/gh/Kingdavids/tech-portfolio@main/public/resume/Muyiwa-Davids-Resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
     [appMagnetic]="0.15"
     aria-label="Download resume as PDF"
   >Resume <span class="resume-icon">↓</span></a>
