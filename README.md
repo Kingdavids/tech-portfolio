@@ -1,5 +1,7 @@
 # tech.muyiwadavids.com
 
+[![CI](https://github.com/Kingdavids/tech-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Kingdavids/tech-portfolio/actions/workflows/ci.yml)
+
 The source for my software engineering portfolio, live at https://tech.muyiwadavids.com. It is an Angular 19 single page site with a hero, About, Experience, Work and Contact section. The Work section holds 20+ projects, each with an optional case study written in the STAR format (situation, task, action, result).
 
 ## Stack
@@ -99,7 +101,7 @@ This runs the Jasmine and Karma suite once in headless Chrome. Set `CHROME_BIN` 
 - The Experience, About and Contact components render their data, and the contact form validates its fields.
 - The app renders all five page sections.
 
-There are no end-to-end tests and no continuous integration workflow yet, so the suite runs locally.
+A GitHub Actions workflow in `.github/workflows/ci.yml` runs the tests and a production build on every push to `main` and on every pull request. It uses a headless Chrome launcher without the sandbox, defined in `karma.conf.js`, because hosted runners restrict the sandbox. There are no end-to-end tests yet.
 
 ## Layout
 
