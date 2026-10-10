@@ -41,9 +41,9 @@
       </div>
       <div class="terminal-body">
         <p class="terminal-line"><span class="prompt">$</span> whoami</p>
-        <p class="terminal-line output">{{ name }}, {{ role }}</p>
-        <p class="terminal-line"><span class="prompt">$</span> cat legal_name.txt</p>
-        <p class="terminal-line output">Olumuyiwa David Ogunniyi, building professionally as {{ name }}.</p>
+        <p class="terminal-line output">{{ name }}, Software Engineer</p>
+        <p class="terminal-line"><span class="prompt">$</span> cat alias.txt</p>
+        <p class="terminal-line output">Known professionally as Muyiwa Davids.</p>
         <p class="terminal-line"><span class="prompt">$</span> cat mission.txt</p>
         <p class="terminal-line output typed-line">Build clean, scalable, production-ready software.<span class="cursor">▌</span></p>
       </div>
@@ -55,17 +55,9 @@
         <span class="spec-rule"></span>
       </div>
       <div class="spec-tiles">
-        <div class="spec-tile">
-          <span class="spec-icon">🖥️</span>
-          <span class="spec-label">Frontend</span>
-        </div>
-        <div class="spec-tile">
-          <span class="spec-icon">⚙️</span>
-          <span class="spec-label">Backend</span>
-        </div>
-        <div class="spec-tile">
-          <span class="spec-icon">☁️</span>
-          <span class="spec-label">AI &amp; Cloud</span>
+        <div class="spec-tile" *ngFor="let spec of specs">
+          <span class="spec-icon">{{ spec.icon }}</span>
+          <span class="spec-label">{{ spec.label }}</span>
         </div>
       </div>
     </div>

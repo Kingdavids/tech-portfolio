@@ -149,6 +149,13 @@
     font-size: 0.78rem;
   }
 
+  @media (max-width: 420px) {
+    .nav-item {
+      padding: 0.4rem 0.4rem;
+      font-size: 0.74rem;
+    }
+  }
+
   .resume-btn {
     align-self: center;
   }

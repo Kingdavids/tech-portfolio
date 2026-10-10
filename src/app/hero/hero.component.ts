@@ -19,9 +19,16 @@ interface Stat {
   styleUrl: './hero.component.css'
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
-  name = 'Muyiwa Davids';
-  role = 'Software Engineer';
-  tagline = 'I build AI-powered products and production web apps with React, Next.js, Angular and Python. My client systems are live for businesses in Nigeria and Maryland.';
+  name = 'Olumuyiwa David Ogunniyi';
+  role = 'Software Engineer | Full-Stack & AI-Enabled Applications';
+  tagline = 'I build and maintain real-world software, from user-facing applications to backend APIs, databases, and cloud deployment. My work spans React, TypeScript, Node.js, Python, and AI-assisted engineering, with a focus on making software reliable and useful.';
+
+  specs = [
+    { icon: '🖥️', label: 'React / TypeScript' },
+    { icon: '⚙️', label: 'Backend APIs' },
+    { icon: '☁️', label: 'Cloud' },
+    { icon: '✨', label: 'AI Tooling' },
+  ];
 
   stats: Stat[] = [
     { target: 3, suffix: '+', display: '3+', label: 'Years of experience' },
