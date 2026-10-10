@@ -21,6 +21,7 @@ export interface WorkItem {
   posterUrl?: string;
   screenshotUrl?: string;
   academic: boolean;
+  featured: boolean;
   priority: number;
   /** Skip the live iframe preview (e.g. liveUrl points back at this same site). */
   noEmbed?: boolean;

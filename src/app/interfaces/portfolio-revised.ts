@@ -34,6 +34,7 @@ export interface Project {
   screenshotUrl?: string;
   highlights?: string[];
   academic?: boolean;
+  featured?: boolean;
   priority?: number;
   noEmbed?: boolean;
   star?: StarStory;

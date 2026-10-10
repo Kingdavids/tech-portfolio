@@ -13,7 +13,7 @@ import { SpringBootProjectService } from '../services/spring-boot-project.servic
 import { TiltDirective } from '../shared/tilt.directive';
 import { WorkDetailDialogComponent } from './work-detail-dialog.component';
 
-type Filter = 'All' | WorkCategory;
+type Filter = 'Featured' | 'All' | WorkCategory;
 
 const DEFAULT_PRIORITY = 100;
 
@@ -27,10 +27,11 @@ const DEFAULT_PRIORITY = 100;
 export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   items: WorkItem[] = [];
   filteredItems: WorkItem[] = [];
-  activeFilter: Filter = 'Frontend';
+  loaded = false;
+  activeFilter: Filter = 'Featured';
   searchTerm = '';
 
-  readonly filters: Filter[] = ['All', 'Frontend', 'Backend', 'Full-Stack', 'AI/ML', 'Cloud/DevOps', 'Desktop & CLI', 'Systems', 'Process'];
+  readonly filters: Filter[] = ['Featured', 'All', 'Frontend', 'Backend', 'Full-Stack', 'AI/ML', 'Cloud/DevOps', 'Desktop & CLI', 'Systems', 'Process'];
 
   @ViewChild('workListEl') private workListEl!: ElementRef<HTMLElement>;
   private revealObserver?: IntersectionObserver;
@@ -62,17 +63,22 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // Loaded in the browser only, so a prerendered page never freezes a snapshot of the live data.
+    if (!isPlatformBrowser(this.platformId)) return;
     forkJoin({
       frontend: this.projectService.getProjects(),
       backend: this.springBootProjectService.getProjects(),
     }).subscribe(({ frontend, backend }) => {
+      this.loaded = true;
       this.items = [
         ...frontend.map(p => this.fromProject(p)),
         ...backend.map(p => this.fromSpringBootProject(p)),
       ].sort((a, b) => {
+        if (a.academic !== b.academic) return a.academic ? 1 : -1;
         const rankDiff = this.previewRank(a) - this.previewRank(b);
         return rankDiff !== 0 ? rankDiff : a.priority - b.priority;
       });
+      if (!this.items.some(item => item.featured)) this.activeFilter = 'All';
       this.applyFilters();
     });
   }
@@ -121,6 +127,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       posterUrl: project.posterUrl,
       screenshotUrl: project.screenshotUrl,
       academic: !!project.academic,
+      featured: !!project.featured,
       priority: project.priority ?? DEFAULT_PRIORITY,
       noEmbed: !!project.noEmbed,
       star: project.star,
@@ -142,6 +149,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       posterUrl: project.posterUrl,
       screenshotUrl: project.screenshotUrl,
       academic: !!project.academic,
+      featured: false,
       priority: project.priority ?? DEFAULT_PRIORITY,
       star: project.star,
     };
@@ -176,7 +184,9 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private applyFilters(): void {
     this.filteredItems = this.items.filter(item => {
-      const matchesFilter = this.activeFilter === 'All' || item.category === this.activeFilter;
+      const matchesFilter =
+        this.activeFilter === 'All' ||
+        (this.activeFilter === 'Featured' ? item.featured : item.category === this.activeFilter);
       const matchesSearch = item.title.toLowerCase().includes(this.searchTerm);
       return matchesFilter && matchesSearch;
     });

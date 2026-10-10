@@ -10,6 +10,7 @@
     "highlights": ["Stripe Payments"],
     "screenshotUrl": "images/screenshot-royalway-space-rental.jpg",
     "priority": 1,
+    "featured": true,
     "star": {
       "situation": "Royalway Christian Centre was booking their private event hall in Ellicott City by phone and email, with no way for people to see pricing or layouts online.",
       "task": "Build a booking platform that could take real deposits, show pricing for different room setups, and confirm bookings automatically.",
@@ -29,11 +30,12 @@
     "highlights": ["WhatsApp Ordering"],
     "screenshotUrl": "images/screenshot-adisah-african-store.jpg",
     "priority": 1.5,
+    "featured": true,
     "star": {
       "situation": "A Maryland African grocer wanted a real website instead of just a flyer and word of mouth, with ordering that matched how their customers already order: a phone call or a WhatsApp message.",
       "task": "Build a site from a photo of their flyer as the only source material, ship real ordering and review flows with it, and set up the SEO and analytics a new small-business domain needs from day one.",
       "action": "Built it with Next.js 16 and Tailwind, with every store detail (hours, address, categories) in one data file so it's easy to correct as the owner confirms more of it. The order page lets a customer build a grocery list and sends it straight into a WhatsApp message instead of a cart and checkout flow nobody running a corner store wants to maintain. Printed review cards point at a short redirect route rather than Google directly, so the QR code never needs reprinting if the review link changes. Added LocalBusiness structured data, a Google Analytics 4 property with key events, and a verified Search Console property, then registered the domain and put the whole thing on Railway with HTTPS.",
-      "result": "Live at adisahafricanstore.com since October 2026, with real orders going out over WhatsApp while the owner works through the product photos and details still pending confirmation."
+      "result": "Live at adisahafricanstore.com since October 2026. Customers can build a grocery list and send it over WhatsApp, and the owner is still confirming product photos and details."
     }
   },
 
@@ -47,6 +49,7 @@
     "tools": ["Angular", "TypeScript", "SSR", "SCSS", "Angular Material"],
     "screenshotUrl": "images/screenshot-tech-portfolio.jpg",
     "priority": 2,
+    "featured": true,
     "noEmbed": true,
     "star": {
       "situation": "My old portfolio was a mobile-web-development coursework project, not something I could confidently point recruiters to.",
@@ -65,6 +68,7 @@
     "tools": ["AWS", "Azure", "Docker", "Terraform"],
     "screenshotUrl": "images/screenshot-ovbiedo-app.jpg",
     "priority": 3,
+    "featured": true,
     "star": {
       "situation": "The Edo community in Montreal needed a better way to organize and promote their events than word of mouth and scattered flyers.",
       "task": "Join the cloud operations team and help take the app from a simple event listing tool to a full ticketing platform as demand grew.",
@@ -83,6 +87,7 @@
     "highlights": ["AI Chat Companion"],
     "screenshotUrl": "images/screenshot-creative-ecosystem.jpg",
     "priority": 4,
+    "featured": true,
     "star": {
       "situation": "My media, tech, and podcast work were scattered across separate sites with nothing tying them together.",
       "task": "Build one personal brand hub that could hold all of it and help visitors find their way around.",
@@ -171,6 +176,7 @@
     "highlights": ["Live in Production"],
     "screenshotUrl": "images/screenshot-jigzack-cleaning-services.jpg",
     "priority": 0,
+    "featured": true,
     "noEmbed": true,
     "star": {
       "situation": "Jigzack Cleaning Services, a LAWMA-approved waste collection company in Lagos and Port Harcourt, was running customer signup, pickup scheduling, billing and payments by hand, with no system behind any of it.",

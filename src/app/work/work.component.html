@@ -130,5 +130,5 @@
     </div>
   </mat-card>
 
-  <p class="empty-state" *ngIf="!filteredItems.length">No work matches your search.</p>
+  <p class="empty-state" *ngIf="loaded && !filteredItems.length">No work matches your search.</p>
 </div>
