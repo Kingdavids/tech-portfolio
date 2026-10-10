@@ -8,6 +8,7 @@
     "postbuild": "node -e \"const f=require('fs'),d='dist/portfolio-revised/browser/';if(!f.existsSync(d+'index.html'))f.copyFileSync(d+'index.csr.html',d+'index.html')\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "serve:ssr:portfolioRevised": "node dist/portfolio-revised/server/server.mjs"
   },
   "private": true,
