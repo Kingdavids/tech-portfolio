@@ -1,59 +1,94 @@
-# PortfolioRevised
+# tech.muyiwadavids.com
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+The source for my software engineering portfolio, live at https://tech.muyiwadavids.com. It is an Angular 19 single page site with a hero, About, Experience, Work and Contact section. The Work section holds 20+ projects, each with an optional case study written in the STAR format (situation, task, action, result).
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- Angular 19 with standalone components, built by the Angular application builder
+- Angular Material for the case study dialog, plus hand-written SCSS and CSS for everything else
+- Server-side rendering and prerendering for the page shell
+- EmailJS for the contact form
+- AWS Amplify for hosting
 
-```bash
-ng serve
+## How the project data works
+
+Project and case study data does not live in the build. The Work section fetches two JSON files from a GitHub Gist when the page loads in the browser, so I can edit a project and see it live without a rebuild or deploy. Each service falls back to a copy bundled in `public/data/` if the Gist is unreachable.
+
+- `src/app/services/project.service.ts` loads `portfolio.json`
+- `src/app/services/spring-boot-project.service.ts` loads `spring-boot-projects.json`
+- `public/data/` holds the fallback copies. They are not synced automatically, so after editing one I copy it to the Gist with `gh gist edit <id> --filename <name> <file>`.
+
+The Gist's raw URL is cached for about five minutes, so edits take a few minutes to appear.
+
+A project looks like this:
+
+```json
+{
+  "title": "Project name",
+  "description": "Card summary",
+  "category": "Full-Stack",
+  "year": "2026",
+  "link": "https://live-site.example",
+  "githubUrl": "https://github.com/user/repo",
+  "tools": ["Next.js", "PostgreSQL"],
+  "highlights": ["Short chip"],
+  "screenshotUrl": "images/screenshot.jpg",
+  "priority": 1,
+  "featured": true,
+  "star": { "situation": "", "task": "", "action": "", "result": "" }
+}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+`featured` projects appear under the default Featured filter. `noEmbed` skips the live iframe preview for sites that block framing. `academic` sorts a project after the professional work.
 
-## Code scaffolding
+## Decisions worth knowing about
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerendering and live data
+
+Angular prerenders at build time, and any HTTP call made during that render is frozen into the static HTML. The first version of the Gist loading did exactly that, so edits to the Gist never reached the live site. The Work component now skips its fetch on the server, so the prerendered page contains the hero, About and Experience, and the project list loads in the browser.
+
+### Build output name
+
+With prerendering off, Angular writes `index.csr.html` and Amplify's rewrite rule expects `index.html`. The `postbuild` script copies the file only when `index.html` is missing, so the build works either way.
+
+### Mobile memory
+
+The Work cards embed live iframes of the real sites on desktop. On phones that crashed the browser after enough scrolling, because the iframe memory was not released reliably. Touch and narrow screens now get static screenshots, and only desktop gets live previews.
+
+### Scroll position on load
+
+Browsers restore scroll position or jump to a URL fragment on reload, and both can reapply late after fonts and images shift the layout. `src/index.html` locks scrolling at the start of every load and releases it once the page has settled at the top.
+
+### Resume link
+
+Amplify's default single page app rewrite rule matches `.pdf` and returns `index.html`. The Resume button therefore points at the PDF served by jsDelivr from this repository. The rule can be fixed in the Amplify Console, after which the local path in `public/resume/` works.
+
+## Running locally
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
+The dev server runs at http://localhost:4200. In a dev build the page shell is server-rendered, and running on `localhost` can fall back to client rendering with a warning about allowed hosts. That does not happen on the deployed domain.
 
 ## Building
 
-To build the project run:
-
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Output goes to `dist/portfolio-revised/browser`. `npm run serve:ssr:portfolioRevised` starts the Express server in `src/server.ts` against that build. Amplify serves the static output and does not run that server.
 
-## Running unit tests
+## Layout
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- `src/app/hero`, `about`, `experience`, `work`, `contacts` hold one component per section
+- `src/app/work/work-detail-dialog.component.*` is the case study dialog
+- `src/app/shared` holds the nav, footer, tech marquee and small directives (tilt, magnetic hover, scroll reveal)
+- `src/app/interfaces` holds the data types
+- `public/data` holds the fallback project data
+- `public/images` holds screenshots and the social preview card
 
-```bash
-ng test
-```
+## Contact form
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The form sends through EmailJS. The service, template and public key constants at the top of `src/app/contacts/contacts.component.ts` are placeholders until real values are set. With placeholders, the form opens the visitor's mail app with the message filled in.
