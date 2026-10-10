@@ -3,5 +3,6 @@ export interface Experience {
   role: string;
   location: string;
   dates: string;
+  stack: string[];
   bullets: string[];
 }

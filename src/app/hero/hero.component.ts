@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, PLATFORM
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { scrollToSection } from '../shared/scroll.util';
 import { TechMarqueeComponent } from '../shared/tech-marquee/tech-marquee.component';
-import { TextScrambleDirective } from '../shared/text-scramble.directive';
 import { MagneticDirective } from '../shared/magnetic.directive';
 
 interface Stat {
@@ -15,19 +14,19 @@ interface Stat {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, TechMarqueeComponent, TextScrambleDirective, MagneticDirective],
+  imports: [CommonModule, TechMarqueeComponent, MagneticDirective],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css'
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
   name = 'Muyiwa Davids';
-  role = 'Full-Stack Developer';
-  tagline = 'I build clean, scalable web applications, from Angular and React front ends to Spring Boot and Node backends, with a focus on real-world, production-ready systems.';
+  role = 'Software Engineer';
+  tagline = 'I build AI-powered products and production web apps with React, Next.js, Angular and Python. My client systems are live for businesses in Nigeria and Maryland.';
 
   stats: Stat[] = [
-    { target: 9, suffix: '+', display: '9+', label: 'Projects shipped' },
-    { target: 6, suffix: '', display: '6', label: 'Spring Boot systems' },
-    { target: 10, suffix: '+', display: '10+', label: 'Technologies' },
+    { target: 3, suffix: '+', display: '3+', label: 'Years of experience' },
+    { target: 3, suffix: '', display: '3', label: 'Client systems live' },
+    { target: 3, suffix: '', display: '3', label: 'Product teams joined' },
   ];
 
   private statsObserver?: IntersectionObserver;

@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TechMarqueeComponent {
   stack = [
-    'Angular', 'React', 'TypeScript', 'Spring Boot', 'Java', 'Node.js',
-    'PostgreSQL', 'MySQL', 'AWS', 'Azure', 'Docker', 'Terraform', 'Linux', 'REST APIs',
+    'React', 'Next.js', 'Angular', 'TypeScript', 'Python', 'FastAPI', 'Node.js',
+    'PostgreSQL', 'Supabase', 'LLM Integration', 'RAG', 'AWS', 'Docker', 'Spring Boot', 'REST APIs',
   ];
 }

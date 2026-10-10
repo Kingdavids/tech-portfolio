@@ -8,5 +8,8 @@
     <ul class="experience-bullets">
       <li *ngFor="let bullet of entry.bullets">{{ bullet }}</li>
     </ul>
+    <div class="experience-stack">
+      <span class="experience-chip" *ngFor="let tech of entry.stack">{{ tech }}</span>
+    </div>
   </div>
 </div>

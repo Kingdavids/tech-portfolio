@@ -1,27 +1,23 @@
-<div class="about-split">
-  <div class="about-photo-col">
-    <div class="profile-section glass-card">
-      <div class="profile-flip-container">
-        <img [src]="currentPicture" class="profile-image" alt="Profile picture">
-      </div>
-      <p class="profile-caption">Full-stack developer &amp; lifelong builder, based in Ontario, Canada.</p>
-    </div>
-
-    <div class="glass-card skills-card">
-      <h3>Skills</h3>
-      <div class="skill-tier" *ngFor="let tier of info.skillTiers">
-        <span class="skill-tier-label">{{ tier.label }}</span>
-        <div class="skills-chips">
-          <span class="skill-chip" *ngFor="let skill of tier.skills">{{ skill }}</span>
-        </div>
-      </div>
-    </div>
+<div class="about-top">
+  <div class="profile-section glass-card">
+    <img [src]="picture" class="profile-image" width="140" height="140" alt="Muyiwa Davids">
+    <p class="profile-caption">Software engineer building AI products and production web apps, based in Ontario, Canada.</p>
   </div>
 
-  <div class="about-content-col">
+  <div class="glass-card bio-card">
     <h3 class="sr-only">Bio</h3>
-    <div class="glass-card bio-card" *ngFor="let paragraph of bioParagraphs">
-      <p>{{paragraph}}</p>
+    <p *ngFor="let paragraph of bioParagraphs">{{ paragraph }}</p>
+  </div>
+</div>
+
+<div class="glass-card skills-card">
+  <h3>Skills</h3>
+  <div class="skills-grid">
+    <div class="skill-tier" *ngFor="let tier of info.skillTiers">
+      <span class="skill-tier-label">{{ tier.label }}</span>
+      <div class="skills-chips">
+        <span class="skill-chip" *ngFor="let skill of tier.skills">{{ skill }}</span>
+      </div>
     </div>
   </div>
 </div>

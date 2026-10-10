@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Information } from '../interfaces/portfolio-revised';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-about',
@@ -9,10 +9,10 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class AboutComponent {
   info: Information = {
     name: "Muyiwa Davids",
-    role: "Full Stack Developer",
+    role: "Software Engineer",
     skillTiers: [
       {
         label: "Strong",
@@ -43,51 +43,16 @@ export class AboutComponent implements OnInit, OnDestroy {
         skills: ["Slack", "Linear", "Jira", "Git"],
       },
     ],
-    describe: "My name is Olumuyiwa David Ogunniyi. I'm a software engineer with 3+ years of experience building production web applications, AI-powered products, and cloud-integrated systems. Most of my work is in Angular, React, TypeScript, Next.js, and Python/FastAPI (this site included), plus backend services, database modeling, and Linux-based service configuration.\n" +
+    describe: "My name is Olumuyiwa David Ogunniyi. I'm a software engineer with 3+ years of experience building production web applications and AI-powered products. I work mostly in React, Next.js, Angular, TypeScript and Python, and I'm at Averil now, building full-stack features and bringing AI into product workflows.\n" +
       "\n" +
-      "Recent projects include this Angular portfolio, with custom routing and search filtering, and a set of Linux services (FTP, NFS, Samba, Sendmail) configured and secured in virtualized environments. I've also built normalized database models and RESTful APIs, working across teams to keep the resulting codebases maintainable.\n" +
+      "Outside my job I build systems for clients, and three of them are live. Jigzack Cleaning Services runs customer signup, pickup scheduling, invoicing and payments for a waste collection company in Lagos and Port Harcourt. Royalway Christian Centre takes venue bookings and Stripe deposits online. Adisah African Store, a grocer in Maryland, lets customers send an order list over WhatsApp.\n" +
       "\n" +
-      "Alongside my own projects, I contribute to product engineering at Averil, and I evaluate AI coding-agent output for Codex and Claude Code through G2i and DataAnnotation. That's changed how carefully I read someone else's code, which turns out to be a different skill from writing my own. I like turning a complicated idea into something people can use, and I keep an eye on new tools that make software faster, more accessible, or easier to maintain."
+      "I also evaluate AI coding-agent output for Codex and Claude Code through G2i and DataAnnotation. It changed how carefully I read other people's code, which is a different skill from writing my own. I like turning a complicated idea into something people can use."
   };
 
   get bioParagraphs(): string[] {
     return this.info.describe.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
   }
 
-  // 🔄 Picture slideshow logic
-  pictures: string[] = [
-    '/images/profile-smile.jpg',
-    '/images/profile-traditional.jpg',
-  ];
-  currentIndex = 0;
-  currentPicture = this.pictures[0];
-  intervalId?: ReturnType<typeof setInterval>;
-  private readonly platformId = inject(PLATFORM_ID);
-
-  ngOnInit() {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    this.intervalId = setInterval(() => {
-      const container = document.querySelector('.profile-flip-container');
-      if (container) {
-        // Start flip
-        container.classList.add('flip');
-
-        // Midway (0.4s) swap the image
-        setTimeout(() => {
-          this.currentIndex = (this.currentIndex + 1) % this.pictures.length;
-          this.currentPicture = this.pictures[this.currentIndex];
-        }, 400); // halfway through flip
-
-        // End flip
-        setTimeout(() => container.classList.remove('flip'), 800);
-      }
-    }, 5000);
-  }
-
-  ngOnDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  }
+  readonly picture = 'images/profile-linkedin.jpg';
 }
