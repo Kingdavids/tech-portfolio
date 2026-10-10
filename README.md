@@ -49,7 +49,7 @@ Angular prerenders at build time, and any HTTP call made during that render is f
 
 ### Build output name
 
-With prerendering off, Angular writes `index.csr.html` and Amplify's rewrite rule expects `index.html`. The `postbuild` script copies the file only when `index.html` is missing, so the build works either way.
+If prerendering is ever turned off, Angular writes `index.csr.html` instead of `index.html`, and Amplify's rewrite rule expects `index.html`. The `postbuild` script copies the file only when `index.html` is missing, so the build works either way.
 
 ### Mobile memory
 
@@ -79,6 +79,27 @@ npm run build
 ```
 
 Output goes to `dist/portfolio-revised/browser`. `npm run serve:ssr:portfolioRevised` starts the Express server in `src/server.ts` against that build. Amplify serves the static output and does not run that server.
+
+## Deployment
+
+Pushes to `main` deploy through AWS Amplify Hosting, which serves the static files from `dist/portfolio-revised/browser` behind CloudFront. The build settings and the rewrite and redirect rules live in the Amplify Console, so this repository has no `amplify.yml`.
+
+Two Amplify behaviors shaped the code. Its single page app rewrite rule returns `index.html` for any extension it does not list, which is why the resume is served from jsDelivr and the sitemap is a `.txt` file. And the CDN caches the page and assets, so a new deploy can take a few minutes to show up everywhere.
+
+## Testing
+
+```bash
+npm run test:ci
+```
+
+This runs the Jasmine and Karma suite once in headless Chrome. Set `CHROME_BIN` if Chrome is not on the default path. There are 18 tests:
+
+- The two data services return the live Gist data and fall back to the bundled JSON when the Gist request fails.
+- The Work section opens on the Featured filter, falls back to All when nothing is featured, sorts class projects last, filters by category and search text, and shows the empty state only after the data has loaded.
+- The Experience, About and Contact components render their data, and the contact form validates its fields.
+- The app renders all five page sections.
+
+There are no end-to-end tests and no continuous integration workflow yet, so the suite runs locally.
 
 ## Layout
 
